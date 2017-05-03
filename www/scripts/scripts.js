@@ -29,17 +29,6 @@
         .then(menu.close.bind(menu));
     };
 
-    var map;
-
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 59.348, lng: 18.071},
-        zoom: 16,
-        mapTypeId: 'satellite',
-        disableDefaultUI: true,
-        gestureHandling: 'cooperative'
-      });
-    }
 
 		function login(username,password) {
 			hideDialog('login-dialog');
