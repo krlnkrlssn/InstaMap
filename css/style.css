@@ -1,9 +1,12 @@
-/* Toolbar */ 
+/* Toolbar */
 
 #nav-bar {
 	background-color: #3c7d8f;
 }
 
+.testStyle {
+	color: white;
+}
 
 .header {
 	font-size: 24px;
@@ -19,7 +22,7 @@
 
 .right {
 	text-align: right;
-	padding-right: 10px; 
+	padding-right: 10px;
 }
 
 .padd {
@@ -40,9 +43,9 @@
 }
 
 .tool-button {
-	background: none; 
-	border-width: 2px; 
-	border-color: #a4d9e8; 
+	background: none;
+	border-width: 2px;
+	border-color: #a4d9e8;
 	color: #a4d9e8;
 	padding: 3px;
 }
