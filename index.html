@@ -1,0 +1,269 @@
+<!-- INSTAMAP -->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>InstaMap</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+  <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    //ons.platform.select('android')
+    ons.platform.select('ios')
+
+    var openDialog = function(id) {
+      document
+        .getElementById(id)
+        .show();
+    };
+
+    var hideDialog = function(id) {
+      document
+        .getElementById(id)
+        .hide();
+    };
+
+    var showPage = function(page) {
+      var content = document.getElementById('content');
+      content.load(page)
+    }
+
+    var openMenu = function() {
+      var menu = document.getElementById('menu');
+      menu.open();
+    };
+
+    var loadPage = function(page) {
+      var content = document.getElementById('content');
+      var menu = document.getElementById('menu');
+      content.load(page)
+        .then(menu.close.bind(menu));
+    };
+  </script>
+</head>
+<body>
+  <ons-splitter>
+    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+      <ons-page>
+        <ons-list>
+          <ons-list-item onclick="loadPage('page1.html')" tappable>
+            Home
+          </ons-list-item>
+          <ons-list-item onclick="loadPage('face.html')" tappable>
+            Face
+          </ons-list-item>
+          <ons-list-item onclick="loadPage('shoulders.html')" tappable>
+            Shoulders
+          </ons-list-item>
+          <ons-list-item onclick="loadPage('feet.html')" tappable>
+            Feet
+          </ons-list-item>
+          <ons-list-item onclick="loadPage('about.html')" tappable>
+            About
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content id="content" page="page1.html"></ons-splitter-content>
+  </ons-splitter>
+
+  <ons-template id="page1.html">
+    <ons-page id="first-page">
+      <ons-toolbar id="nav-bar">
+        <div class="left">
+          <ons-toolbar-button onclick="openMenu()">
+            <ons-icon icon="md-menu" id="back-button"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center header">Relaxation</div>
+      </ons-toolbar>
+
+      <div class="content center">
+
+        <ons-list>
+          <ons-list-item onclick="showPage('face.html')" modifier="chevron" tappable>
+            <div class="list-text">Face</div>
+          </ons-list-item>
+          <ons-list-item onclick="showPage('shoulders.html')" modifier="chevron" tappable>
+            <div class="list-text">Shoulders</div>
+          </ons-list-item>
+          <ons-list-item onclick="showPage('feet.html')" modifier="chevron" tappable>
+            <div class="list-text">Feet</div>
+          </ons-list-item>
+        </ons-list>
+
+        <div class="padd"><ons-button id="about-button" onclick="showPage('about.html')">About</ons-button></div>
+
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="about.html">
+    <ons-page id="about-page">
+      <ons-toolbar id="nav-bar">
+        <div class="left">
+          <ons-toolbar-button onclick="openMenu()">
+            <ons-icon icon="md-menu" id="back-button"></ons-icon>
+          </ons-toolbar-button>
+          </div>
+        <div class="center header">About</div>
+      </ons-toolbar>
+
+      <div class="content" style="text-align: center">
+        <img src="images/photo-default.jpg" width="100%">
+        <p>This is the about page.</p>
+        <p>This app is created by BirdCatchers - Amanda, Jonas & Linette</p>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="face.html">
+    <ons-page id="face-page">
+      <ons-toolbar id="nav-bar">
+        <div class="left">
+          <ons-toolbar-button onclick="openMenu()">
+            <ons-icon icon="md-menu" id="back-button"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center header">Face</div>
+        <div class="right">
+          <ons-toolbar-button class="tool-button" onclick="openDialog('dialog')">Button</ons-toolbar-button>
+        </div>
+      </ons-toolbar>
+
+      <div class="content">
+        <img src="images/photo-face.jpg" width="100%">
+          <ons-list>
+            <ons-list-item>
+              <div class="center">
+                Practice done
+              </div>
+              <div class="right">
+                <ons-switch></ons-switch>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        <ul>
+          <li>Become aware of your face.</li>
+          <li>Feel the forehead.</li>
+          <li>The eyebrows.</li>
+          <li>Eyes.</li>
+          <li>Nose.</li>
+          <li>Nostrils.</li>
+          <li>Air flowing through the nostrils.</li>
+          <li>Cheeks.</li>
+          <li>Jaw.</li>
+          <li>Lips.</li>
+          <li>Tongue.</li>
+          <li>Whole of the head.</li>
+          <li>The space surrounding the head.</li>
+        </ul>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="shoulders.html">
+    <ons-page id="shoulders-page">
+      <ons-toolbar id="nav-bar">
+        <div class="left">
+          <ons-toolbar-button onclick="openMenu()">
+            <ons-icon icon="md-menu" id="back-button"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center header">Shoulders</div>
+        <div class="right">
+          <ons-toolbar-button class="tool-button" onclick="openDialog('dialog')">Button</ons-toolbar-button>
+        </div>
+      </ons-toolbar>
+
+      <div class="content">
+        <img src="images/photo-shoulders.jpg" width="100%">
+          <ons-list>
+            <ons-list-item>
+              <div class="center">
+                Practice done
+              </div>
+              <div class="right">
+                <ons-switch></ons-switch>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        <ul>
+          <li>Let your arms hang loose.</li>
+          <li>Become aware of the shoulders.</li>
+          <li>Slightly lift one shoulder and release it.</li>
+          <li>Let the shoulder come all the way down.</li>
+          <li>Lift the other shoulder and release it.</li>
+          <li>Alternate three more times on each side.</li>
+          <li>Experience the breath flowing in and out of the body.</li>
+        </ul>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-template id="feet.html">
+    <ons-page id="feet-page">
+      <ons-toolbar id="nav-bar">
+        <div class="left">
+          <ons-toolbar-button onclick="openMenu()">
+            <ons-icon icon="md-menu" id="back-button"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center header">Feet</div>
+        <div class="right">
+          <ons-toolbar-button class="tool-button" onclick="openDialog('dialog')">Button</ons-toolbar-button>
+        </div>
+      </ons-toolbar>
+
+      <div class="content">
+        <img src="images/photo-feet.jpg" width="100%">
+        <ons-list>
+            <ons-list-item>
+              <div class="center">
+                Practice done
+              </div>
+              <div class="right">
+                <ons-switch></ons-switch>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        <ul>
+          <li>Stand on your feet.</li>
+          <li>Experience the contact with the ground.</li>
+          <li>Feel into the soles of the feet.</li>
+          <li>Feel the knees.</li>
+          <li>The hips.</li>
+          <li>The spine.</li>
+          <li>Shoulders.</li>
+          <li>Neck.</li>
+          <li>Head.</li>
+          <li>Feel the connection between the top of the head and the feet.</li>
+        </ul>
+      </div>
+    </ons-page>
+  </ons-template>
+
+  <ons-dialog id="dialog">
+    <div style="text-align: center; padding: 10px;">
+      <p>
+        This is a dialog.
+      <p>
+
+      <p>
+        <ons-button id="about-button" onclick="hideDialog('dialog')">Close</ons-button>
+      </p>
+    </div>
+  </ons-dialog>
+
+
+</body>
+</html>
