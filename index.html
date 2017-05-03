@@ -65,6 +65,11 @@
       });
     }
 
+		function login(username, password) {
+			hideDialog('login-dialog');
+			showPage('main.html');
+		}
+
   </script>
 </head>
 <body>
@@ -93,20 +98,53 @@
   <ons-template id="start.html">
     <ons-page id="first-page">
       <ons-toolbar id="nav-bar">
-        <div class="left">
-          <ons-toolbar-button onclick="openMenu()">
-            <ons-icon icon="md-menu" id="back-button"></ons-icon>
-          </ons-toolbar-button>
-        </div>
         <div class="center header">InstaMap</div>
       </ons-toolbar>
 
       <div class="content center">
 				<div class="padd"><ons-button id="about-button" onclick="showPage('create_account.html')">Create Account</ons-button></div>
-				<div class="padd"><ons-button id="about-button" onclick="showPage('login.html')">Log In</ons-button></div>
+				<div class="padd"><ons-button id="about-button" onclick="openDialog('login-dialog')">Log In</ons-button></div>
 			</div>
     </ons-page>
   </ons-template>
+
+	<ons-dialog id="login-dialog">
+    <div style="text-align: center; padding: 10px;">
+      <p>
+				<input id="username" value="Username"/>
+				<input id="password" value="Password"/>
+      <p>
+      <p>
+        <ons-button id="about-button" onclick="login(username, password)">Log In</ons-button>
+      </p>
+    </div>
+  </ons-dialog>
+
+	<ons-template id="create_account.html">
+		<ons-page id="create_account-page">
+			<ons-toolbar id="nav-bar">
+				<div class="left">
+					<ons-toolbar-button onclick="openMenu()">
+						<ons-icon icon="md-menu" id="back-button"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+				<div class="center header"></div>
+				<div class="right"></div>
+			</ons-toolbar>
+
+			<div class="content">
+					<ons-list>
+						<ons-list-item>
+							<div class="center">
+								Här skapar man kontot
+							</div>
+							<div class="right">
+							</div>
+						</ons-list-item>
+					</ons-list>
+			</div>
+		</ons-page>
+	</ons-template>
 
   <ons-template id="about.html">
     <ons-page id="about-page">
