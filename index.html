@@ -48,6 +48,8 @@
       content.load(page)
         .then(menu.close.bind(menu));
     };
+
+
   </script>
 </head>
 <body>
@@ -55,10 +57,10 @@
     <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
       <ons-page>
         <ons-list>
-          <ons-list-item onclick="loadPage('page1.html')" tappable>
+          <ons-list-item onclick="loadPage('start.html')" tappable>
             Home
           </ons-list-item>
-          <ons-list-item onclick="loadPage('face.html')" tappable>
+          <ons-list-item onclick="loadPage('main.html')" tappable>
             Face
           </ons-list-item>
           <ons-list-item onclick="loadPage('shoulders.html')" tappable>
@@ -73,10 +75,10 @@
         </ons-list>
       </ons-page>
     </ons-splitter-side>
-    <ons-splitter-content id="content" page="page1.html"></ons-splitter-content>
+    <ons-splitter-content id="content" page="start.html"></ons-splitter-content>
   </ons-splitter>
 
-  <ons-template id="page1.html">
+  <ons-template id="start.html">
     <ons-page id="first-page">
       <ons-toolbar id="nav-bar">
         <div class="left">
@@ -126,15 +128,15 @@
     </ons-page>
   </ons-template>
 
-  <ons-template id="face.html">
-    <ons-page id="face-page">
+  <ons-template id="main.html">
+    <ons-page id="main-page">
       <ons-toolbar id="nav-bar">
         <div class="left">
           <ons-toolbar-button onclick="openMenu()">
             <ons-icon icon="md-menu" id="back-button"></ons-icon>
           </ons-toolbar-button>
         </div>
-        <div class="center header">Face</div>
+        <div class="center header">InstaMap</div>
         <div class="right">
           <ons-toolbar-button class="tool-button" onclick="openDialog('dialog')">Button</ons-toolbar-button>
         </div>
