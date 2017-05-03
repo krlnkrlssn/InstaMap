@@ -10,6 +10,50 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkdDXXrqM-MYz7QiZhOI7hL0OV-WpNICw&callback=initMap"></script>
         <script src="scripts/controller.js"></script>
         <script src="scripts/scripts.js"></script>
+
+        <script>
+          //ons.platform.select('android')
+          ons.platform.select('ios')
+
+          var openDialog = function(id) {
+            document
+              .getElementById(id)
+              .show();
+          };
+
+          var hideDialog = function(id) {
+            document
+              .getElementById(id)
+              .hide();
+          };
+
+          var showPage = function(page) {
+            var content = document.getElementById('content');
+            content.load(page)
+          }
+
+          var openMenu = function() {
+            var menu = document.getElementById('menu');
+            menu.open();
+          };
+
+          var loadPage = function(page) {
+            var content = document.getElementById('content');
+            var menu = document.getElementById('menu');
+            content.load(page)
+              .then(menu.close.bind(menu));
+          };
+
+      		function login(username,password) {
+      			hideDialog('login-dialog');
+      			showPage('main.html');
+      		}
+
+      		function create_account(realname,username,password) {
+      			showPage('main.html');
+      		}
+
+        </script>
     </head>
     <body>
         <ons-page id="first-page">
@@ -35,6 +79,5 @@
             </p>
           </div>
         </ons-dialog>
-
     </body>
 </html>
