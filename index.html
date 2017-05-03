@@ -65,8 +65,12 @@
       });
     }
 
-		function login(username, password) {
+		function login(username,password) {
 			hideDialog('login-dialog');
+			showPage('main.html');
+		}
+
+		function create_account(realname,username,password) {
 			showPage('main.html');
 		}
 
@@ -111,11 +115,11 @@
 	<ons-dialog id="login-dialog">
     <div style="text-align: center; padding: 10px;">
       <p>
-				<input id="username" value="Username"/>
-				<input id="password" value="Password"/>
+				<input id="username" type="text" value="Username"/>
+				<input id="password" type="password" value="Password"/>
       <p>
       <p>
-        <ons-button id="about-button" onclick="login(username, password)">Log In</ons-button>
+        <ons-button id="login-button" onclick="login(username, password)">Log In</ons-button>
       </p>
     </div>
   </ons-dialog>
@@ -123,11 +127,6 @@
 	<ons-template id="create_account.html">
 		<ons-page id="create_account-page">
 			<ons-toolbar id="nav-bar">
-				<div class="left">
-					<ons-toolbar-button onclick="openMenu()">
-						<ons-icon icon="md-menu" id="back-button"></ons-icon>
-					</ons-toolbar-button>
-				</div>
 				<div class="center header"></div>
 				<div class="right"></div>
 			</ons-toolbar>
@@ -136,7 +135,13 @@
 					<ons-list>
 						<ons-list-item>
 							<div class="center">
-								Här skapar man kontot
+								<form>
+									<li><input id="realname" type="text" value="Realname"/></li>
+									<li><input id="username" type="text" value="Username"/></li>
+									<li><input id="password" type="password" value="Password"/></li>
+									<li><input id="password" type="password" value="Password"/></li>
+								</form>
+								<ons-button id="create_account-button" onclick="create_account(realname,username,password)">Create Account</ons-button>
 							</div>
 							<div class="right">
 							</div>
