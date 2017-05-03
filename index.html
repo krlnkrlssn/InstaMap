@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
   <link rel="stylesheet" href="css/style.css">
 
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkdDXXrqM-MYz7QiZhOI7hL0OV-WpNICw&callback=initMap"></script>
+
   <script>
     //ons.platform.select('android')
     ons.platform.select('ios')
@@ -49,6 +53,17 @@
         .then(menu.close.bind(menu));
     };
 
+    var map; 
+
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 59.348, lng: 18.071},
+        zoom: 16,
+        mapTypeId: 'satellite', 
+        disableDefaultUI: true,
+        gestureHandling: 'cooperative'
+      });
+    }
 
   </script>
 </head>
@@ -92,8 +107,8 @@
       <div class="content center">
 
         <ons-list>
-          <ons-list-item onclick="showPage('face.html')" modifier="chevron" tappable>
-            <div class="list-text">Face</div>
+          <ons-list-item onclick="showPage('main.html')" modifier="chevron" tappable>
+            <div class="list-text">Main</div>
           </ons-list-item>
           <ons-list-item onclick="showPage('shoulders.html')" modifier="chevron" tappable>
             <div class="list-text">Shoulders</div>
@@ -141,22 +156,8 @@
           <ons-toolbar-button class="tool-button" onclick="openDialog('dialog')">Button</ons-toolbar-button>
         </div>
       </ons-toolbar>
-
       <div class="content">
-        <img src="images/photo-face.jpg" width="100%">
-          <ons-list>
-            <ons-list-item>
-              <div class="center">
-                Practice done
-              </div>
-              <div class="right">
-                <ons-switch></ons-switch>
-              </div>
-            </ons-list-item>
-          </ons-list>
-        <ul>
-
-        </ul>
+        <div id="map">HEJ</div>
       </div>
     </ons-page>
   </ons-template>
