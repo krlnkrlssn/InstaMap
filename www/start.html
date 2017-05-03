@@ -1,0 +1,22 @@
+<ons-page id="first-page">
+  <ons-toolbar id="nav-bar">
+    <div class="center header">InstaMap</div>
+  </ons-toolbar>
+
+  <div class="content center">
+    <div class="padd"><ons-button id="about-button" onclick="showPage('create_account.html')">Create Account</ons-button></div>
+    <div class="padd"><ons-button id="about-button" onclick="openDialog('login-dialog')">Log In</ons-button></div>
+  </div>
+</ons-page>
+
+<ons-dialog id="login-dialog">
+  <div style="text-align: center; padding: 10px;">
+    <p>
+      <input id="username" type="text" value="Username"/>
+      <input id="password" type="password" value="Password"/>
+    <p>
+    <p>
+      <ons-button id="login-button" onclick="login(username, password)">Log In</ons-button>
+    </p>
+  </div>
+</ons-dialog>
