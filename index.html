@@ -146,8 +146,8 @@
     </ons-page>
   </ons-template>
 
-  <ons-template id="profile.html">
-    <ons-page id="profilepage-page">
+	<ons-template id="profile.html">
+    <ons-page id="profile-page">
       <ons-toolbar id="nav-bar">
         <div class="left">
           <ons-toolbar-button onclick="openMenu()">
@@ -171,6 +171,32 @@
       </div>
     </ons-page>
   </ons-template>
+
+	<ons-template id="settings.html">
+		<ons-page id="setting-page">
+			<ons-toolbar id="nav-bar">
+				<div class="left">
+					<ons-toolbar-button onclick="openMenu()">
+						<ons-icon icon="md-menu" id="back-button"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+				<div class="center header">Settings</div>
+				<div class="right"></div>
+			</ons-toolbar>
+
+			<div class="content">
+					<ons-list>
+						<ons-list-item>
+							<div class="center">
+								Här ska man kunna ändra inställningar
+							</div>
+							<div class="right">
+							</div>
+						</ons-list-item>
+					</ons-list>
+			</div>
+		</ons-page>
+	</ons-template>
 
   <ons-dialog id="dialog">
     <div style="text-align: center; padding: 10px;">
