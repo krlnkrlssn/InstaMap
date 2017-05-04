@@ -13,12 +13,18 @@
         .picture {
           height: 100%;
           width: 100%;
+          background-color: #666;
         }
 
-    
-
         .grid {
+            background-color: #666;
 
+        }
+        .toolbar {
+            background-color: #666;
+        }
+        .page {
+         
         }
 
     </style>
@@ -29,53 +35,55 @@
 
     </head>
     <body>
-        <ons-page>
-            <ons-toolbar>
-                <div class="left">
-                    <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+        <div class="back"
+            <ons-page class="page">
+                <ons-toolbar class="toolbar">
+                    <div class="left">
+                        <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+                    </div>
+                    <div class="center">My Profile</div>
+                </ons-toolbar>
+                
+                <div style="text-align: center">
+                    <h1>Memories</h1>
                 </div>
-                <div class="center">My Profile</div>
-            </ons-toolbar>
-            
-            <div style="text-align: center">
-                <h1>Memories</h1>
-            </div>
-            <div class="grid">
-                <ons-row>
-                    <ons-col>
-                        <img class="picture" src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
-                    </ons-col>
-                    <ons-col>
-                        <img class="picture" src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
-                    </ons-col>
-                    <ons-col>
-                        <img class="picture" src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
-                    </ons-col>           
-                </ons-row>
-                <ons-row>
-                    <ons-col>
-                        <img class="picture" src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
-                    </ons-col>
-                    <ons-col>
-                        <img class="picture" src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
-                    </ons-col>
-                    <ons-col>
-                        <img class="picture" src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
-                    </ons-col>         
-                </ons-row>
-                <ons-row>
-                    <ons-col>
-                        <img class="picture" src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
-                    </ons-col>
-                    <ons-col>
-                        <img class="picture" src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
-                    </ons-col>
-                    <ons-col>
-                        <img class="picture" src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
-                    </ons-col>        
-                </ons-row>
-            </div>
-        </ons-page>
+                <div class="grid">
+                    <ons-row>
+                        <ons-col>
+                            <img class="picture" src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
+                        </ons-col>
+                        <ons-col>
+                            <img class="picture" src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
+                        </ons-col>
+                        <ons-col>
+                            <img class="picture" src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
+                        </ons-col>           
+                    </ons-row>
+                    <ons-row>
+                        <ons-col>
+                            <img class="picture" src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
+                        </ons-col>
+                        <ons-col>
+                            <img class="picture" src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
+                        </ons-col>
+                        <ons-col>
+                            <img class="picture" src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
+                        </ons-col>         
+                    </ons-row>
+                    <ons-row>
+                        <ons-col>
+                            <img class="picture" src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
+                        </ons-col>
+                        <ons-col>
+                            <img class="picture" src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
+                        </ons-col>
+                        <ons-col>
+                            <img class="picture" src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
+                        </ons-col>        
+                    </ons-row>
+                </div>
+            </ons-page>
+        </div>
     </body>
 
 </html>
