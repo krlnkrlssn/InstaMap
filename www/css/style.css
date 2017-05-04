@@ -5,6 +5,12 @@ body {
 
 }
 
+h1 {
+  font-family: 'Avenir Next';
+  color: white !important;
+  text-align: center;
+}
+
 a {
   text-decoration: none !important;
   font-family: 'Avenir Next';

@@ -13,8 +13,8 @@
         <!--<script src="scripts/firebase.js"></script> -->
         <script src="scripts/controller.js"></script>
         <script src="scripts/scripts.js"></script>
-
     </head>
+
     <body>
         <ons-page id="first-page">
           <ons-toolbar id="nav-bar">
@@ -22,23 +22,21 @@
           </ons-toolbar>
 
           <div class="content center">
-            <a href="main.html">GO TO MAP</a>
+            <h1><a href="main.html">GO TO MAP</a></h1>
             <div class="padd"><ons-button class="original-button" id="about-button"><a href="create_account.html">Create Account</a></ons-button></div>
-            <div class="padd"><ons-button class="original-button" id="about-button" onclick="openDialog('login-dialog')">Log In</ons-button></div>
+            <div class="padd"><ons-button class="original-button" id="about-button" onclick="showDialog('login-dialog')">Log In</ons-button></div>
           </div>
         </ons-page>
 
-        <ons-dialog id="login-dialog" ng-controller="LoginController">
+        <ons-dialog id="login-dialog">
           <div style="text-align: center; padding: 10px;">
             <p>
               <input id="email" type="text" value="test@kth.se"/>
               <input id="password" type="password" value="Password"/>
             <p>
-            <p>
-              <ons-button id="login-button" ng-click="login(email, password)">Log In</ons-button>
+              <ons-button id="login-button" onclick="login(email, password)">Log In</ons-button>
             </p>
           </div>
         </ons-dialog>
-
     </body>
 </html>
