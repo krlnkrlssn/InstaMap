@@ -1,17 +1,73 @@
-<ons-page>
-    <ons-toolbar>
-        <div class="left">
-            <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
-        </div>
-        <div class="center">My Profile</div>
-    </ons-toolbar>
-    
-    <div style="text-align: center">
-        <h1>Memories</h1>
-        <ons-button onclick="slidingMenu.setMainPage('map.html')">Back</ons-button>
-    <div>
-        <ons-row>
-            <img src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG">
-        </img></ons-row>
-    </div>
-</ons-page>
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+    <head>
+        <style type="text/css">
+        .col {
+          border: 1px solid #ccc;
+          background: #fff;
+          overflow: hidden;
+          padding: 4px;
+          color: #999;
+        }
+
+    </style>
+
+    <script>
+        ons.bootstrap();
+    </script> 
+
+    </head>
+    <body>
+        <ons-page>
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+                </div>
+                <div class="center">My Profile</div>
+            </ons-toolbar>
+            
+            <div style="text-align: center">
+                <h1>Memories</h1>
+                <ons-button onclick="slidingMenu.setMainPage('map.html')">Back</ons-button>
+            <grid>
+                <ons-row size="33%">
+                    <ons-col>
+                        <img src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
+                    </ons-col>
+                    <ons-col>
+                        <img src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
+                    </ons-col>
+                    <ons-col>
+                        <img src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
+                    </ons-col>
+                           
+                </ons-row>
+                <ons-row size="33%">
+                    <ons-col>
+                        <img src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
+                    </ons-col>
+                    <ons-col>
+                        <img src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
+                    </ons-col>
+                    <ons-col>
+                        <img src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
+                    </ons-col>
+                           
+                </ons-row>
+                <ons-row size="33%">
+                    <ons-col>
+                        <img src="https://fritidvildmark.se/PICTURE/hund_ynQfNG.JPG"></img>
+                    </ons-col>
+                    <ons-col>
+                        <img src="http://www.raddadjuren.se/wp-content/uploads/2015/04/shutterstock_72396574.jpg"></img>
+                    </ons-col>
+                    <ons-col>
+                        <img src="http://www.trivia.se/bilder/questions/19903-20080215000214.jpg"></img>
+                    </ons-col>
+                           
+                </ons-row>
+            </grid>
+        </ons-page>
+    </body>
+
+</html>
