@@ -73,9 +73,22 @@ a:active {
     bottom:0px
 }
 
-.btn-delete{
+.cam-icon {
     z-index:1
+    font-size: 50px;
+    opacity: 0.4;
 }
+
+a.cam-link:link {
+  color: #BEBEBE;
+  opacity: 70%;
+}
+
+a.cam-link {
+  color: #BEBEBE;
+  opacity: 70%;
+}
+
 
 .btn-distance{
     z-index:1; margin-left: 5px;
