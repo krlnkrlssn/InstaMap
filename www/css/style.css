@@ -5,6 +5,27 @@ body {
 
 }
 
+a {
+  text-decoration: none !important;
+  font-family: 'Avenir Next';
+}
+
+a:link {
+    color: white;
+}
+/* visited link */
+a:visited {
+    color: white;
+}
+/* mouse over link */
+a:hover {
+    color: #333333;
+}
+/* selected link */
+a:active {
+    color: #333333;
+}
+
 .white-text {
   font-family: 'Avenir Next';
   color: white !important;
@@ -18,6 +39,7 @@ body {
 .original-button{
   background-color: #897897;
   font-family: 'Avenir Next';
+  margin: 5px;
 }
 
 #nav-bar {

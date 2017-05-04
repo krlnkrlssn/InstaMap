@@ -2,7 +2,7 @@
 
 (function() {
     var app = angular.module('myApp', ['onsen']);
-  
+
     //Sliding menu controller, swiping management
 
     loginUser = function(email, password) {   
@@ -40,9 +40,9 @@
 
 
     app.controller('SlidingMenuController', function($scope){
-      
+
         $scope.checkSlidingMenuStatus = function(){
-          
+
             $scope.slidingMenu.on('postclose', function(){
                 $scope.slidingMenu.setSwipeable(false);
             });
@@ -50,18 +50,18 @@
                 $scope.slidingMenu.setSwipeable(true);
             });
         };
-      
+
         $scope.checkSlidingMenuStatus();
     });
 
     //Map controller
     app.controller('MapController', function($scope, $timeout){
-      
+
         $scope.map;
         $scope.markers = [];
         $scope.markerId = 1;
-          
-        //Map initialization  
+
+        //Map initialization
         $timeout(function(){
 
         var mapStyle =     [
@@ -291,7 +291,7 @@
                 ]
               }
             ];
-      
+
             var latlng = new google.maps.LatLng(35.7042995, 139.7597564);
             var myOptions = {
                 zoom: 8,
@@ -300,7 +300,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 disableDefaultUI: true
             };
-            $scope.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+            $scope.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
             $scope.overlay = new google.maps.OverlayView();
             $scope.overlay.draw = function() {}; // empty function required
             $scope.overlay.setMap($scope.map);
@@ -308,54 +308,54 @@
             $scope.hammertime = Hammer($scope.element).on("hold", function(event) {
                 $scope.addOnClick(event);
             });
-            
+
         },100);
-    
+
         //Delete all Markers
         $scope.deleteAllMarkers = function(){
-            
+
             if($scope.markers.length == 0){
                 ons.notification.alert({
                     message: 'There are no markers to delete!!!'
                 });
                 return;
             }
-            
+
             for (var i = 0; i < $scope.markers.length; i++) {
-                            
-                //Remove the marker from Map                  
+
+                //Remove the marker from Map
                 $scope.markers[i].setMap(null);
             }
-            
+
             //Remove the marker from array.
             $scope.markers.length = 0;
             $scope.markerId = 0;
-            
+
             ons.notification.alert({
                 message: 'All Markers deleted.'
-            });   
+            });
         };
-    
+
         $scope.rad = function(x) {
             return x * Math.PI / 180;
         };
-        
-        
+
+
         //Add single Marker
         $scope.addOnClick = function(event) {
             var x = event.gesture.center.pageX;
             var y = event.gesture.center.pageY-44;
-            var point = new google.maps.Point(x, y);            
-            var coordinates = $scope.overlay.getProjection().fromContainerPixelToLatLng(point);       
-         
+            var point = new google.maps.Point(x, y);
+            var coordinates = $scope.overlay.getProjection().fromContainerPixelToLatLng(point);
+
             var marker = new google.maps.Marker({
                 position: coordinates,
                 map: $scope.map
             });
-            
+
             marker.id = $scope.markerId;
             $scope.markerId++;
-            $scope.markers.push(marker);            
+            $scope.markers.push(marker);
 
 
             $timeout(function(){
@@ -374,9 +374,9 @@
                             case 1:
                                 for (var i = 0; i < $scope.markers.length; i++) {
                                     if ($scope.markers[i].id == marker.id) {
-                                        //Remove the marker from Map                  
+                                        //Remove the marker from Map
                                         $scope.markers[i].setMap(null);
-                         
+
                                         //Remove the marker from array.
                                         $scope.markers.splice(i, 1);
                                     }
@@ -391,8 +391,7 @@
             });
             },1000);
 
-            
+
         };
     });
 })();
-

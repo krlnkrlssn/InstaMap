@@ -1,23 +1,35 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+    <head>
+        <title>InstaMap</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <script src="components/loader.js"></script>
+        <link rel="stylesheet" href="components/loader.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkdDXXrqM-MYz7QiZhOI7hL0OV-WpNICw&callback=initMap"></script>
+        <script src="scripts/controller.js"></script>
+        <script src="scripts/scripts.js"></script>
+    </head>
+
+
+<body>
 <ons-page id="create_account-page">
   <ons-toolbar id="nav-bar">
-    <div class="center header"></div>
-    <div class="right"></div>
+    <div class="center white-text">Create Account</div>
   </ons-toolbar>
 
-  <div class="content">
-      <ons-list>
-        <ons-list-item>
-          <div class="center">
-            <form>
-              <li><input id="realname" type="text" value="Realname"/></li>
-              <li><input id="username" type="text" value="Username"/></li>
-              <li><input id="password" type="password" value="Password"/></li>
-              <li><input id="password" type="password" value="Password"/></li>
-            </form>
-            <ons-button id="create_account-button" onclick="create_account(realname,username,password)">Create Account</ons-button>
-          </div>
-
-        </ons-list-item>
-      </ons-list>
+  <div class="content center">
+    <div class="center" style ="padding-left: 5%;">
+      <form style ="padding-top: 5%; padding-bottom: 5%;">
+        <input id="realname" type="text" value="Realname"/> <br>
+        <input id="username" type="text" value="Username"/> <br>
+        <input id="password" type="password" value="Password"/> <br>
+        <input id="password" type="password" value="Password"/> <br>
+      </form>
+      <ons-button id="create_account-button" class="original-button" onclick="create_account(realname,username,password)">Create Account</ons-button><br>
+    </div>
   </div>
 </ons-page>
+</body>
+</html>
