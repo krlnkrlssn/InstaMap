@@ -31,6 +31,19 @@
 			showPage('main.html');
 		}
 
-		function create_account(realname,username,password) {
-			showPage('main.html');
+		function create_account(email,password) {
+      console.log("create_account in scripts: " + email.value + " " + password.value)
+
+      var returnMessage = "";
+      firebase.auth().createUserWithEmailAndPassword(email.value, password.value).then(function(result) {
+        //once logged in do something here
+      }).catch(function(error) {
+        console.log(error.code);
+        console.log(error.message);
+        alert(error.message);
+      });
+      returnMessage = "You've created a new user! Please log in to play";
+      return returnMessage
+    
+			//showPage('main.html');
 		}
