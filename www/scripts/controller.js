@@ -28,12 +28,242 @@
           
         //Map initialization  
         $timeout(function(){
+
+        var mapStyle =     [
+              {
+                "stylers": [
+                  {
+                    "color": "#ffffff"
+                  }
+                ]
+              },
+              {
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#393939"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.icon",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#212121"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.country",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#9e9e9e"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.land_parcel",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.locality",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#bdbdbd"
+                  }
+                ]
+              },
+              {
+                "featureType": "administrative.neighborhood",
+                "stylers": [
+                  {
+                    "visibility": "off"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#454545"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "featureType": "poi.park",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                  {
+                    "color": "#1b1b1b"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#bebebe"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [
+                  {
+                    "color": "#404040"
+                  }
+                ]
+              },
+              {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#8a8a8a"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#454545"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.highway.controlled_access",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#4e4e4e"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#666666"
+                  }
+                ]
+              },
+              {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#616161"
+                  }
+                ]
+              },
+              {
+                "featureType": "transit",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#757575"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                  {
+                    "color": "#212121"
+                  }
+                ]
+              },
+              {
+                "featureType": "water",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                  {
+                    "color": "#3d3d3d"
+                  }
+                ]
+              }
+            ];
       
             var latlng = new google.maps.LatLng(35.7042995, 139.7597564);
             var myOptions = {
                 zoom: 8,
                 center: latlng,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                styles: mapStyle,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                disableDefaultUI: true
             };
             $scope.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
             $scope.overlay = new google.maps.OverlayView();
@@ -75,60 +305,6 @@
             return x * Math.PI / 180;
         };
         
-        //Calculate the distance between the Markers
-        $scope.calculateDistance = function(){
-            
-            if($scope.markers.length < 2){
-                ons.notification.alert({
-                    message: 'Insert at least 2 markers!!!'
-                });
-            }
-            else{
-                var totalDistance = 0;
-                var partialDistance = [];
-                partialDistance.length = $scope.markers.length - 1;
-                
-                for(var i = 0; i < partialDistance.length; i++){
-                    var p1 = $scope.markers[i];
-                    var p2 = $scope.markers[i+1];
-                    
-                    var R = 6378137; // Earth’s mean radius in meter
-                    var dLat = $scope.rad(p2.position.lat() - p1.position.lat());
-                    var dLong = $scope.rad(p2.position.lng() - p1.position.lng());
-                    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos($scope.rad(p1.position.lat())) * Math.cos($scope.rad(p2.position.lat())) *
-                    Math.sin(dLong / 2) * Math.sin(dLong / 2);
-                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                    totalDistance += R * c / 1000; //distance in Km
-                    partialDistance[i] = R * c / 1000;
-                }
-                
-                
-                ons.notification.confirm({
-                    message: 'Do you want to see the partial distances?',
-                    callback: function(idx) {
-                        
-                        ons.notification.alert({
-                            message: "The total distance is " + totalDistance.toFixed(1) + " km"
-                        });
-                        
-                        switch(idx) {
-                            case 0:
-                                
-                                break;
-                            case 1:
-                                for (var i = (partialDistance.length - 1); i >= 0 ; i--) {
-                                    
-                                    ons.notification.alert({
-                                        message: "The partial distance from point " + (i+1) + " to point " + (i+2) + " is " + partialDistance[i].toFixed(1) + " km"
-                                    });
-                                }
-                                break;
-                        }
-                    }
-                });
-            }
-        };
         
         //Add single Marker
         $scope.addOnClick = function(event) {
