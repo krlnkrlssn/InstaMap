@@ -2,32 +2,20 @@
 
     function openDialog(id) {
       document.getElementById(id);
-<<<<<<< Updated upstream
         //.show();
-=======
-      //.show();
->>>>>>> Stashed changes
+
     };
 
     function hideDialog(id) {
       document.getElementById(id);
-<<<<<<< Updated upstream
-        //.hide();
-=======
       //.hide();
->>>>>>> Stashed changes
     };
 
     function showPage(page) {
       console.log("showpage " + page)
 
       var content = document.getElementById('content');
-<<<<<<< Updated upstream
-      console.log(content)
-      //content.load(page)
-=======
       content.load(page);
->>>>>>> Stashed changes
     }
 
     function openMenu() {
