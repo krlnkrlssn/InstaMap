@@ -1,20 +1,21 @@
 
 
     function openDialog(id) {
-      document
-        .getElementById(id)
-        .show();
+      document.getElementById(id);
+        //.show();
     };
 
     function hideDialog(id) {
-      document
-        .getElementById(id)
-        .hide();
+      document.getElementById(id);
+        //.hide();
     };
 
     function showPage(page) {
+      console.log("showpage " + page)
+
       var content = document.getElementById('content');
-      content.load(page)
+      console.log(content)
+      //content.load(page)
     }
 
     function openMenu() {
@@ -30,10 +31,10 @@
     };
 
 
-		function login(username,password) {
+		/*function login(username,password) {
 			hideDialog('login-dialog');
 			showPage('main.html');
-		}
+		}*/
 
 		function create_account(realname,username,password) {
 			showPage('main.html');
