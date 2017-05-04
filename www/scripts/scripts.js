@@ -1,10 +1,11 @@
 
    var showDialog = function(id) {
-      document.getElementById(id).show();
-      }
+    console.log(document.getElementById(id))
+     //.show();
+    }
 
     var hideDialog = function(id) {
-      document.getElementById(id).hide();
+      document.getElementById(id) //.hide();
     }
 
     function showPage(page) {
@@ -25,12 +26,6 @@
       content.load(page).then(menu.close.bind(menu));
     }
 
-
-		function login(username,password) {
-			hideDialog('login-dialog');
-			showPage('main.html');
-		}
-
 		function create_account(email,password) {
       console.log("create_account in scripts: " + email.value + " " + password.value)
 
@@ -47,3 +42,34 @@
     
 			//showPage('main.html');
 		}
+
+    function login(username,password) {
+      console.log("inne i login")
+
+      firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(function(result) {
+        //once logged in do something here
+        //console.log("logged in then func");
+      }).catch(function(error) {
+         console.log(error.code);
+         console.log(error.message);
+         alert(error.message);
+      });
+      return;
+      
+
+      //hideDialog('login-dialog');
+      //showPage('main.html');
+    }
+
+
+    function logout() {
+      console.log("inne i logout")
+
+      firebase.auth().signOut().then(function() {
+        // console.log("Logged out!")
+      }, function(error) {
+       console.log(error.code);
+       console.log(error.message);
+       alert(error.message);
+    });
+    }
