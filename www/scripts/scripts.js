@@ -30,10 +30,10 @@
     };
 
 
-		/*function login(username,password) {
+		function login(username,password) {
 			hideDialog('login-dialog');
 			showPage('main.html');
-		}*/
+		}
 
 		function create_account(realname,username,password) {
 			showPage('main.html');

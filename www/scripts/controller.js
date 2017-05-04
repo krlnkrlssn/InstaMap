@@ -3,7 +3,18 @@
 (function() {
     var app = angular.module('myApp', ['onsen']);
 
-    //Sliding menu controller, swiping management
+    this.createUser = function(email, password) {
+      var returnMessage = "";
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
+        //once logged in do something here
+      }).catch(function(error) {
+        console.log(error.code);
+        console.log(error.message);
+        alert(error.message);
+      });
+      returnMessage = "You've created a new user! Please log in to play";
+      return returnMessage
+    }
 
     loginUser = function(email, password) {   
       console.log("inside loginUser");
@@ -30,9 +41,18 @@
     
 
     app.controller('LoginController', function($scope){
-      console.log("logincontroller här")
+      console.log("logincontroller här");
       $scope.login = function(email, password) {
+        console.log("scope " +email +" " + password)
         loginUser(email, password);
+      };
+    });
+
+    app.controller('CreateNewUser', function($scope){
+      console.log("create new user här");
+      $scope.create_account = function(email, password) {
+        console.log("create account: " +email +" " + password)
+        
       };
     });
 
