@@ -2,6 +2,7 @@
 
 (function() {
     var app = angular.module('myApp', ['onsen']);
+    var position; 
 
     app.controller('SlidingMenuController', function($scope){
 
@@ -258,7 +259,7 @@
 
             var latlng = new google.maps.LatLng(35.7042995, 139.7597564);
             var myOptions = {
-                zoom: 8,
+                zoom: 12,
                 center: latlng,
                 styles: mapStyle,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -272,6 +273,22 @@
             $scope.hammertime = Hammer($scope.element).on("hold", function(event) {
                 $scope.addOnClick(event);
             });
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+
+                $scope.map.setCenter(pos);
+                position = pos; 
+              }, function() {
+                console.log("failed");
+              });
+            } else {
+              // Browser doesn't support Geolocation
+              console.log("failed");
+            }
 
         },100);
 
