@@ -23,28 +23,16 @@
 
           <div class="content center">
             <h1><a href="main.html">GO TO MAP</a></h1>
-            <div class="padd">
-              <ons-button class="original-button" id="about-button">
-                <a href="create_account.html">Create Account</a>
-              </ons-button>
-            </div>
-            <div class="padd">
-              <a href="login.html">
-                <ons-button class="original-button" id="about-button" onclick="showDialog('login-dialog')">Log In</ons-button>
+
+            <div class="padd center"><center>
+              <a href="create_account.html">
+                <div class="half-circle-top center"><p class="top">Create Account</p></div>
               </a>
-            </div>
-          </div>
+              <a href="login.html">
+                <div class="half-circle-bottom center"><p class="bottom">Log In</p></div>
+              </a>
+            </center></div>
         </ons-page>
 
-        <ons-dialog id="login-dialog">
-          <div style="text-align: center; padding: 10px;">
-            <p>
-              <input id="email" type="text" value="test@kth.se"/>
-              <input id="password" type="password" value="Password"/>
-            <p>
-              <ons-button id="login-button" onclick="login(email, password)">Log In</ons-button>
-            </p>
-          </div>
-        </ons-dialog>
     </body>
 </html>

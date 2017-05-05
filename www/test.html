@@ -1,12 +1,34 @@
-<input type="file" accept="image/*" capture="camera" id="camera">
-<img id="frame">
-<script>
-  var camera = document.getElementById('camera');
-  var frame = document.getElementById('frame');
+<style>
 
-  camera.addEventListener('change', function(e) {
-    var file = e.target.files[0]; 
-    // Do something with the image file.
-    frame.src = URL.createObjectURL(file);
-  });
-</script>
+.half-circle-top {
+    display: block;
+    width: 200px;
+    height: 100px;
+    background-color: #CECECE;
+    border-top-left-radius: 110px;
+    border-top-right-radius: 110px;
+    border: 2px solid #4f4f4f;
+    margin-bottom: 2px;
+}
+
+.half-circle-bottom {
+    display: block;
+    width: 200px;
+    height: 100px;
+    background-color: #4f4f4f;
+    border-bottom-left-radius: 110px;
+    border-bottom-right-radius: 110px;
+    border: 2px solid #cecece;
+}
+p.top {
+  position: relative;
+  top: 45px;
+}
+
+p.bottom {
+  position: relative;
+}
+</style>
+<center>
+<div class="half-circle-top"><p class="top">TEXT</p></div>
+<div class="half-circle-bottom"><p class="bottom">TEXT</p></div></center>

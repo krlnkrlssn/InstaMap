@@ -2,6 +2,8 @@
    var showDialog = function(id) {
     console.log(document.getElementById(id))
      //.show();
+     var content = document.getElementById('content');
+      content.load(id);
     }
 
     var hideDialog = function(id) {
