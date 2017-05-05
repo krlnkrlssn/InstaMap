@@ -24,6 +24,39 @@
         <script src="scripts/controller.js"></script>
         <script src="scripts/scripts.js"></script>
 
+      <style type="text/css">
+        form {
+          padding: 0px;
+          margin: 0px;
+          width: 100%;
+        }
+
+        .input-form {
+          width: 100%;
+          height: 20px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          padding: 5px;
+          font-size: 14px;
+        }
+
+        .input-form:hover {
+          background-color: #cecece;
+        }
+        .input-form:hover::placeholder {
+          color: #FFFFFF;
+        }
+
+        .input-form:focus {
+          background-color: #cecece;
+        }
+        .input-form:focus::placeholder {
+          color: #FFFFFF;
+        }
+
+      </style>
 
     </head>
 
@@ -31,22 +64,19 @@
 <body>
 <ons-page id="create_account-page">
   <ons-toolbar id="nav-bar">
+    <div class="left white-link"><ons-toolbar-button onclick="history.back()"><i class="fa fa-chevron-left white-icon"></i></ons-toolbar-button></div>
     <div class="center white-text">Create Account</div>
   </ons-toolbar>
 
-  <div class="content center">
-    <div class="center" style ="padding-left: 5%;">
-      <div style ="padding-top: 5%; padding-bottom: 5%;">
-        <!--<input id="realname" type="text" value="Realname"/> <br>-->
-        <input id="email" type="text" value="email"/> <br>
-        <input id="password" type="password" value="Password"/> <br>
-        <!--<input id="password" type="password" value="Password"/> <br>-->
-      </div>
-      <ons-button id="create_account-button" class="original-button" onclick="create_account(email,password)">Create Account</ons-button><br>
-    </div>
-
-    <a href="main.html"> gå till main </a>
+  <div style="text-align: center; margin: 30px;">
+    <input class="input-form" id="email" type="text" value="" placeholder="E-mail" /> <br>
+    <input class="input-form" id="password" type="password" value="" placeholder="Password" /> <br>
+    <p style="margin-top: 30px;">
+      <ons-button class="original-button" onclick="create_account(email,password)">Create account</ons-button>
+    </p>
   </div>
+
+  
 </ons-page>
 </body>
 </html>
