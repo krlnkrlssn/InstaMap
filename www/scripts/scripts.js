@@ -32,6 +32,7 @@
       var returnMessage = "";
       firebase.auth().createUserWithEmailAndPassword(email.value, password.value).then(function(result) {
         //once logged in do something here
+        set_new_data();
       }).catch(function(error) {
         console.log(error.code);
         console.log(error.message);
@@ -42,6 +43,32 @@
     
 			//showPage('main.html');
 		}
+
+    function set_new_data() {
+      console.log("inside set_new_data")
+
+      var ref = firebase.database().ref("users");
+      var user = firebase.auth().currentUser;    
+      var uid = user.uid; 
+      var userRef = ref.child(uid);
+
+      userRef.set({
+        username: ""
+      });
+
+/*
+      var pictureRef = userRef.push({
+        time: Date.now(),
+        position: 0
+      });
+
+      var pictureKey = pictureRef.key;
+
+      console.log("pictureKey: " + pictureKey)
+*/
+
+
+    }
 
     function login(username,password) {
       console.log("inne i login")

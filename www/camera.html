@@ -1,13 +1,50 @@
 <input type="file" accept="image/*" capture="camera" id="camera">
 <img id="frame">
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="scripts/scripts.js"></script>	
 <script>
-  var camera = document.getElementById('camera');
-  var frame = document.getElementById('frame');
+	var camera = document.getElementById('camera');
+	var frame = document.getElementById('frame');
 
-  camera.addEventListener('change', function(e) {
-    var file = e.target.files[0]; 
-    // Do something with the image file.
-    frame.src = URL.createObjectURL(file);
-    console.log()
-  });
+	var config = {
+		apiKey: "AIzaSyB2ClyMod6goT-4W29N3adFJHztqHYQIzI",
+		authDomain: "instamap-4b97c.firebaseapp.com",
+		databaseURL: "https://instamap-4b97c.firebaseio.com",
+		projectId: "instamap-4b97c",
+		storageBucket: "instamap-4b97c.appspot.com",
+		messagingSenderId: "115078781904"
+	};
+	firebase.initializeApp(config);
+	var storage = firebase.storage(); 
+
+	camera.addEventListener('change', function(e) {
+		var file = e.target.files[0]; 
+		//frame.src = URL.createObjectURL(file);
+		//var file = frame.src; // use the Blob or File API
+
+		
+		var ref = firebase.database().ref("users");
+		var user = firebase.auth().currentUser;    
+		var uid = user.uid; 
+		var userRef = ref.child(uid);
+
+			
+		var pictureRef = userRef.push({
+			time: Date.now(),
+			position: 0
+		});
+
+		var pictureKey = pictureRef.key;
+
+		console.log("pictureKey: " + pictureKey)
+
+		var ref = storage.ref();
+		var imagesRef = ref.child(pictureKey);
+		imagesRef.put(file).then(function(snapshot) {
+			console.log('Uploaded a blob or file!');
+		});
+	});
+
+
+
 </script>
