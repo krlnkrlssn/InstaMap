@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+    <head>
+      <title>InstaMap</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <script src="components/loader.js"></script>
+      <link rel="stylesheet" href="components/loader.css">
+      <link rel="stylesheet" href="css/style.css">
+      <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyB2ClyMod6goT-4W29N3adFJHztqHYQIzI",
+            authDomain: "instamap-4b97c.firebaseapp.com",
+            databaseURL: "https://instamap-4b97c.firebaseio.com",
+            projectId: "instamap-4b97c",
+            storageBucket: "instamap-4b97c.appspot.com",
+            messagingSenderId: "115078781904"
+          };
+          firebase.initializeApp(config);
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkdDXXrqM-MYz7QiZhOI7hL0OV-WpNICw&callback=initMap"></script>
+      <script src="scripts/controller.js"></script>
+      <script src="scripts/scripts.js"></script>
+    </head>
+
+    <body>
+      <ons-page class="page">
+        <ons-toolbar id ="nav-bar" fixed-style ng-controller="SlidingMenuController">
+            <div class="left">
+                <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon style="color: white;" icon="bars"></ons-icon></ons-toolbar-button>
+            </div>
+            <div class="center white-text">Profile</div>
+        </ons-toolbar>
+
+          <div class="profile_bar white-text">
+          <ons-row class="profile_row">
+            <div class="profile_pic_col">
+              <img class="profile_picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+            </div>
+            <div class="profile_info_col">
+              <b style="font-size: 20px;">Namn Namnsson</b><br>
+              Jag gillar att ta bilder på Mona Lisa, hon är fin!
+
+            </div>
+          </ons-row>
+          </div>
+
+          <div class="content">
+              <ons-row>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+              </ons-row>
+              <ons-row>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+              </ons-row>
+              <ons-row>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+                  <ons-col>
+                    <img class="picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+                  </ons-col>
+              </ons-row>
+          </div>
+      </ons-page>
+    </body>
+
+</html>
