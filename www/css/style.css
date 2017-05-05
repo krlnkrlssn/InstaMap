@@ -61,7 +61,7 @@ a:active {
     z-index: -1
 }
 
-.search-input-map{
+.search-input-map {
     width:60%;
     z-index:1;
     margin-left: auto;
@@ -85,17 +85,31 @@ a:active {
     opacity: 0.4;
 }
 
+.white-icon {
+  color: #FFFFFF;
+}
+
 a.cam-link:link {
   color: #BEBEBE;
-  opacity: 70%;
 }
 
 a.cam-link {
   color: #BEBEBE;
-  opacity: 70%;
+}
+
+a.white-link:link {
+  color: #FFFFFF;
+}
+
+a.white-link {
+  color: #FFFFFF;
 }
 
 
 .btn-distance{
     z-index:1; margin-left: 5px;
+}
+
+.padd {
+  padding: 10px;
 }
