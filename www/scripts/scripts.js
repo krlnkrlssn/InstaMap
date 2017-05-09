@@ -71,6 +71,7 @@ function login(username, password) {
     console.log("logged in")
     //once logged in do something here
     //console.log("logged in then func");
+    window.open("main.html");
   }).catch(function(error) {
      console.log(error.code);
      console.log(error.message);
@@ -86,6 +87,7 @@ function login(username, password) {
 function logout() {
   firebase.auth().signOut().then(function() {
     console.log("Logged out!")
+    window.open("index.html");
   }, function(error) {
     console.log(error.code);
     console.log(error.message);
