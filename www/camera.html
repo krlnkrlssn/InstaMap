@@ -58,9 +58,8 @@
 
 			var removePic = userRef.child("/" + oldestKey)
 			removePic.remove();
-
 		}
-
+		
 		var pictureRef = userRef.push({
 			time: Date.now(),
 			position: 0
@@ -68,7 +67,7 @@
 
 		var pictureKey = pictureRef.key;
 
-		console.log("pictureKey: " + pictureKey)
+//		console.log("pictureKey: " + pictureKey)
 
 		var ref = storage.ref();
 		var imagesRef = ref.child("images/" + pictureKey);
