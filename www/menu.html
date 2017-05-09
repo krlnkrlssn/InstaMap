@@ -1,3 +1,16 @@
+<script src="scripts/scripts.js"></script>
+<script>        // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB2ClyMod6goT-4W29N3adFJHztqHYQIzI",
+      authDomain: "instamap-4b97c.firebaseapp.com",
+      databaseURL: "https://instamap-4b97c.firebaseio.com",
+      projectId: "instamap-4b97c",
+      storageBucket: "instamap-4b97c.appspot.com",
+      messagingSenderId: "115078781904"
+    };
+    firebase.initializeApp(config);
+
+</script>
 <ons-page style="background-color: white">
     <ons-list>
         <ons-list-item
@@ -20,7 +33,7 @@
         </ons-list-item>
         <ons-list-item
             modifier="tappable" class="list__item__line-height"
-            onclick="slidingMenu.setMainPage('.html', {closeMenu: true})">
+            onclick="logout(), slidingMenu.setMainPage('.html', {closeMenu: true})">
             <i class="fa fa-sign-out fa-lg" style="color: #666"></i>
             &nbsp; Log out
         </ons-list-item>

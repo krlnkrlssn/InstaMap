@@ -1,4 +1,5 @@
 
+
 var showDialog = function(id) {
   console.log(document.getElementById(id))
   //.show();
@@ -97,9 +98,48 @@ function logout() {
 
 
 function getUserProfile() {
-  console.log("getUserProfile");
-  var message = "no";
-  return message
+  console.log("userP")
+
+  var storage = firebase.storage().ref(); 
+
+  var roots = firebase.database().ref("users");
+  var user = firebase.auth().currentUser;    
+  var uid = user.uid; 
+  var userRef = roots.child(uid+"/profile/");
+
+  var pic; var info; var link;
+
+  userRef.once("value", function(snapshot) {
+    pic = snapshot.child("profilePic").val()
+    info = snapshot.child("profileInfo").val()
+
+
+    /*console.log("snapshot: " + pic + " info: " + info)
+
+    var storageRef = storage.ref("profilePic");
+    var tangRef = storageRef.child(pic + "png");
+*/
+
+
+    var spaceRef = storage.child('profilePic/' + pic);
+    var path = spaceRef.fullPath;
+
+    console.log("space: " + spaceRef + "  path: " + path)
+
+    var gsReference = storage.refFromURL('gs://test.appspot.com')
+
+    storage.child('images/photo_1.png').getDownloadURL().then(function(url) {
+      var test = url;
+    }).catch(function(error) {
+
+    });
+
+
+  });
+
+
+  console.log("after once")
+
 }
 
 var hello_world = function() {
