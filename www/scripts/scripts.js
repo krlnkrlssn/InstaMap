@@ -1,4 +1,13 @@
-
+function checkStatus() {
+    var user = firebase.auth().currentUser;
+    if (user) {
+      console.log("inlog")
+      return true;
+    } else {
+      console.log("utlog")
+      return false;
+    }
+  }
 
 var showDialog = function(id) {
   console.log(document.getElementById(id))
@@ -72,7 +81,7 @@ function login(username, password) {
     console.log("logged in")
     //once logged in do something here
     //console.log("logged in then func");
-    window.open("main.html");
+    window.open("main.html", "_self");
   }).catch(function(error) {
      console.log(error.code);
      console.log(error.message);
@@ -88,7 +97,7 @@ function login(username, password) {
 function logout() {
   firebase.auth().signOut().then(function() {
     console.log("Logged out!")
-    window.open("index.html");
+    window.open("index.html", "_self");
   }, function(error) {
     console.log(error.code);
     console.log(error.message);

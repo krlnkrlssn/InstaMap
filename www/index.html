@@ -12,6 +12,31 @@
         <!--<script src="scripts/firebase.js"></script> -->
         <script src="scripts/controller.js"></script>
         <script src="scripts/scripts.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+        <script type="text/javascript">
+
+        var config = {  
+            apiKey: "AIzaSyB2ClyMod6goT-4W29N3adFJHztqHYQIzI",
+            authDomain: "instamap-4b97c.firebaseapp.com",
+            databaseURL: "https://instamap-4b97c.firebaseio.com",
+            projectId: "instamap-4b97c",
+            storageBucket: "instamap-4b97c.appspot.com",
+            messagingSenderId: "115078781904"
+        };
+        firebase.initializeApp(config);
+
+          function checkStatus() {
+            var user = firebase.auth().currentUser;
+            if (user) {
+              console.log("inlog")
+              return true;
+            } else {
+              console.log("utlog")
+              return false;
+            }
+          }
+          checkStatus();
+        </script>
     </head>
 
     <body>
