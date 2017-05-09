@@ -1,5 +1,17 @@
-<input type="file" accept="image/*" capture="camera" id="camera">
-<img id="frame">
+<ons-navigator ng-controller="MapController">
+   <ons-page>
+   		<label for="camera" class="custom-file-upload">
+    		<i class="fa fa-camera fa-lg"></i> Upload
+		</label>
+		<input type="file" accept="image/*" capture="camera" id="camera">
+		<img id="frame">
+	</ons-page>
+</ons-navigator>
+<style>
+input[type="file"] {
+    display: none;
+}
+</style>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 <script src="scripts/scripts.js"></script>	
 <script>
