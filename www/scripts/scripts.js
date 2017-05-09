@@ -100,17 +100,93 @@ function getUserProfile() {
   return message
 }
 
-
-
 var hello_world = function() {
   console.log("hello!");
 }
+var geolocate;
+var locate;
 
+function getLocation() {
+    if (navigator.geolocation) {
+        var geolocate = navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        var geolocate = "Geolocation is not supported by this browser.";
+    }
+    return geolocate;
+}
+function showPosition(position) {
+    locate = [position.coords.latitude,position.coords.longitude]; 
+}
 
+function picture() {
+  console.log("picture funcion")
+  console.log(locate)
+    var camera = document.getElementById('camera');
+    var frame = document.getElementById('frame');
+    var storage = firebase.storage(); 
 
+    camera.addEventListener('change', function(e) {
+        console.log('selected a blob');
+        var file = e.target.files[0]; 
+        //frame.src = URL.createObjectURL(file); var file = frame.src; // use the Blob or File API
+        var ref = firebase.database().ref("users");
+        var user = firebase.auth().currentUser;    
+        var uid = user.uid; 
+        var userRef = ref.child(uid+"/pictures");
 
+        var countChild = 0;
 
+        var oldestTime = 99999999999999;
+        var oldestKey = "";
 
+        userRef.once("value", function(snapshot) {
+          // The callback function will get called twice, once for "fred" and once for "barney"
+         snapshot.forEach(function(childSnapshot) {
+            var key = childSnapshot.key;
+            var childData = childSnapshot.val();
+
+            if (oldestTime > childData.time) {
+                oldestTime = childData.time;
+                oldestKey = key;
+            }
+
+            //console.log("key is:  " + key)
+            //var timestamp = userRef.child(key + "/time");         
+            countChild = countChild + 1;     
+        });
+
+        if (countChild >= 9) {
+            var deleteRef = firebase.storage().ref("/images"); 
+            var desertRef = deleteRef.child(oldestKey);
+            desertRef.delete().then(function() {
+                console.log("File deleted successfully")
+            }).catch(function(error) {
+              // Uh-oh, an error occurred!
+            });
+
+            var removePic = userRef.child("/" + oldestKey)
+            removePic.remove();
+        }
+        
+        var pictureRef = userRef.push({
+            time: Date.now(),
+            position: locate
+        });
+
+        var pictureKey = pictureRef.key;
+
+//      console.log("pictureKey: " + pictureKey)
+
+        var ref = storage.ref();
+        var imagesRef = ref.child("images/" + pictureKey);
+        imagesRef.put(file).then(function(snapshot) {
+            console.log('Uploaded a blob');
+        });
+          
+        });
+
+    });
+}
 
 
 

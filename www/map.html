@@ -1,3 +1,13 @@
+<style>
+input[type="file"] {
+    display: none;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="scripts/scripts.js"></script>  
+<script>
+getLocation();
+</script>
 <ons-navigator ng-controller="MapController">
    <ons-page>
         <ons-toolbar id ="nav-bar" fixed-style ng-controller="SlidingMenuController">
@@ -11,7 +21,7 @@
 
         <p class="par-buttons">
             <label for="camera" class="custom-file-upload">
-                <i class="fa fa-camera fa-3x cam-icon"></i>
+                <i class="fa fa-camera fa-3x cam-icon" onclick="picture()"></i>
             </label>
             <input type="file" accept="image/*" capture="camera" id="camera">
             <!--<a class="cam-link" href="camera.html">
@@ -20,88 +30,3 @@
         </p>
     </ons-page>
 </ons-navigator>
-<style>
-input[type="file"] {
-    display: none;
-}
-</style>
-<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-<script src="scripts/scripts.js"></script>  
-<script>
-    var camera = document.getElementById('camera');
-    var frame = document.getElementById('frame');
-
-    var config = {
-        apiKey: "AIzaSyB2ClyMod6goT-4W29N3adFJHztqHYQIzI",
-        authDomain: "instamap-4b97c.firebaseapp.com",
-        databaseURL: "https://instamap-4b97c.firebaseio.com",
-        projectId: "instamap-4b97c",
-        storageBucket: "instamap-4b97c.appspot.com",
-        messagingSenderId: "115078781904"
-    };
-    firebase.initializeApp(config);
-    var storage = firebase.storage(); 
-
-    camera.addEventListener('change', function(e) {
-        var file = e.target.files[0]; 
-        //frame.src = URL.createObjectURL(file); var file = frame.src; // use the Blob or File API
-        var ref = firebase.database().ref("users");
-        var user = firebase.auth().currentUser;    
-        var uid = user.uid; 
-        var userRef = ref.child(uid+"/pictures");
-
-        var countChild = 0;
-
-        var oldestTime = 99999999999999;
-        var oldestKey = "";
-
-
-        userRef.once("value", function(snapshot) {
-          // The callback function will get called twice, once for "fred" and once for "barney"
-         snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            var childData = childSnapshot.val();
-
-            if (oldestTime > childData.time) {
-                oldestTime = childData.time;
-                oldestKey = key;
-            }
-
-            //console.log("key is:  " + key)
-            //var timestamp = userRef.child(key + "/time");         
-            countChild = countChild + 1;     
-        });
-
-        if (countChild >= 9) {
-            var deleteRef = firebase.storage().ref("/images"); 
-            var desertRef = deleteRef.child(oldestKey);
-            desertRef.delete().then(function() {
-                console.log("File deleted successfully")
-            }).catch(function(error) {
-              // Uh-oh, an error occurred!
-            });
-
-            var removePic = userRef.child("/" + oldestKey)
-            removePic.remove();
-        }
-        
-        var pictureRef = userRef.push({
-            time: Date.now(),
-            position: 0
-        });
-
-        var pictureKey = pictureRef.key;
-
-//      console.log("pictureKey: " + pictureKey)
-
-        var ref = storage.ref();
-        var imagesRef = ref.child("images/" + pictureKey);
-        imagesRef.put(file).then(function(snapshot) {
-            console.log('Uploaded a blob');
-        });
-          
-        });
-
-    });
-
-</script>
