@@ -105,55 +105,62 @@ function logout() {
   });
 }
 
+function profileInfo() {
 
-function getUserProfile() {
-  console.log("userP")
-
-  var storage = firebase.storage().ref(); 
+  var storageRef = firebase.storage().ref();
 
   var roots = firebase.database().ref("users");
   var user = firebase.auth().currentUser;    
   var uid = user.uid; 
-  var userRef = roots.child(uid+"/profile/");
+  var profileRef = roots.child(uid+"/profile/");
 
-  var pic; var info; var link;
+  var userRef = roots.child(uid);
 
-  userRef.once("value", function(snapshot) {
+  userRef.on("value", function(snapshot) {
+    var username = snapshot.child("username").val();
+    document.querySelector("#username").innerHTML = username;    // username 
+     
+
+  }, function (error) {
+     console.log("Error: " + error.code);
+  });
+
+  //document.querySelector("#username").innerHTML = info;
+
+  var pic; var info;
+
+  profileRef.once("value", function(snapshot) {
     pic = snapshot.child("profilePic").val()
     info = snapshot.child("profileInfo").val()
 
-
-    /*console.log("snapshot: " + pic + " info: " + info)
-
-    var storageRef = storage.ref("profilePic");
-    var tangRef = storageRef.child(pic + "png");
-*/
+    console.log("info is: " + info)
+    document.querySelector("#description").innerHTML = info;    // profile description! 
 
 
-    var spaceRef = storage.child('profilePic/' + pic);
+    var spaceRef = storageRef.child('profilePic/' + pic);
     var path = spaceRef.fullPath;
 
-    console.log("space: " + spaceRef + "  path: " + path)
+    //console.log("Path: " + path)
+    var spaceRef = storageRef.child(path);
+    storageRef.child(path+".png").getDownloadURL().then(function(url) {
+        var test = url;
+        console.log(url);
+        document.querySelector('.profile_picture').src = test;        // profile picture
 
-    var gsReference = storage.refFromURL('gs://test.appspot.com')
 
-    storage.child('images/photo_1.png').getDownloadURL().then(function(url) {
-      var test = url;
     }).catch(function(error) {
-
+      console.log("erroew")
+      console.log(error.code);
+      console.log(error.message);
     });
 
 
   });
-
-
-  console.log("after once")
-
 }
 
-var hello_world = function() {
-  console.log("hello!");
-}
+
+
+
 var geolocate;
 var locate;
 
@@ -165,9 +172,12 @@ function getLocation() {
     }
     return geolocate;
 }
+
+
 function showPosition(position) {
     locate = [position.coords.latitude,position.coords.longitude]; 
 }
+
 
 function picture() {
   console.log("picture funcion")
@@ -240,6 +250,60 @@ function picture() {
 }
 
 
+
+
+
+/*
+
+function getUserProfile() {
+  console.log("userP")
+
+  var storage = firebase.storage().ref(); 
+
+  var roots = firebase.database().ref("users");
+  var user = firebase.auth().currentUser;    
+  var uid = user.uid; 
+  var userRef = roots.child(uid+"/profile/");
+
+  var pic; var info; var link;
+
+  userRef.once("value", function(snapshot) {
+    pic = snapshot.child("profilePic").val()
+    info = snapshot.child("profileInfo").val()
+
+    //console.log("snapshot: " + pic + " info: " + info)
+
+    //var storageRef = storage.ref("profilePic");
+    //var tangRef = storageRef.child(pic + "png");
+
+
+    var spaceRef = storage.child('profilePic/' + pic);
+    var path = spaceRef.fullPath;
+
+    console.log("space: " + spaceRef + "  path: " + path)
+
+    var gsReference = storage.refFromURL('gs://test.appspot.com')
+
+    console.log("gsReference: " + gsReference)
+
+    storage.child('images/photo_1.png').getDownloadURL().then(function(url) {
+      var test = url;
+      console.log("test is: " + test)
+    }).catch(function(error) {
+      console.log("getDownloadURL error")
+      console.log(error.code);
+      console.log(error.message);
+    });
+
+
+  });
+
+
+  console.log("after once")
+
+}
+
+*/
 
 
 
