@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE HTML>
   <html ng-app="myApp">
     <head>
@@ -25,14 +26,34 @@
       <script src="scripts/scripts.js"></script>
     </head>
 
-    <body>
-      <ons-page class="page">
-        <ons-toolbar id ="nav-bar" fixed-style ng-controller="SlidingMenuController">
-            <div class="left">
-                <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon style="color: white;" icon="bars"></ons-icon></ons-toolbar-button>
+    
+<ons-page>
+    <ons-toolbar>
+        <div class="left">
+            <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">Settings Page</div>
+    </ons-toolbar>
+    
+    <div class="center">
+        <h1>Settings</h1>
+
+        <ons-row class="profile_row">
+
+            <div class="profile_pic_col">       <!--  Profile picture here -->
+              <img class="profile_picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
             </div>
-            <div class="center white-text">Settings</div>
-        </ons-toolbar>
+            <div class="profile_info_col"> 
+              <b style="font-size: 20px;" id="username"></b><br>
+              <p id="description"></p>
+
+              <ons-button class="original-button" onclick="getUserPic()">hello pictures</ons-button>
+
+            </div>
+
+          </ons-row>
+        <ons-button onclick="slidingMenu.setMainPage('map.html')">Back</ons-button>
+    </div>
 
 </ons-page>
 </body>

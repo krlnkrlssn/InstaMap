@@ -201,11 +201,13 @@ function picture() {        // stores pictures in database
             var childData = childSnapshot.val();
 
             if (oldestTime > childData.time) {
-                oldestTime = childData.time;
-                oldestKey = key;
+              oldestTime = childData.time;
+              oldestKey = key;
             }
             countChild = countChild + 1;
           });
+
+          console.log("countChild is: " + countChild);
 
           if (countChild >= 9) {
             var deleteRef = firebase.storage().ref("/images");
@@ -253,12 +255,9 @@ function getUserPic() {                           // Get all user pictures.
 
     snapshot.forEach(function(childSnapshot) {
       pic = childSnapshot.key;
-
-      console.log("key is: " + pic)
-
+      
       var spaceRef = storageRef.child('images/' + pic);
       var path = spaceRef.fullPath;
-
       var spaceRef = storageRef.child(path);
 
       var toHTML = ".p" + iteration;
