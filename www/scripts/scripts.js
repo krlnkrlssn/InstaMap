@@ -47,8 +47,6 @@ function createAccount(email, password) {
     console.log(error.message);
     alert(error.message);
   });
-//returnMessage = "You've created a new user! Please log in to play";
-//return returnMessage
 
 //showPage('main.html');
 }
@@ -105,8 +103,8 @@ function logout() {
   });
 }
 
-function profileInfo() {
 
+function profileInfo() {
   var storageRef = firebase.storage().ref();
 
   var roots = firebase.database().ref("users");
@@ -124,8 +122,6 @@ function profileInfo() {
   }, function (error) {
      console.log("Error: " + error.code);
   });
-
-  //document.querySelector("#username").innerHTML = info;
 
   var pic; var info;
 
@@ -179,7 +175,7 @@ function showPosition(position) {
 }
 
 
-function picture() {
+function picture() {        // stores pictures in database
   console.log("picture funcion")
   console.log(locate)
     var camera = document.getElementById('camera');
@@ -189,7 +185,6 @@ function picture() {
     camera.addEventListener('change', function(e) {
         console.log('selected a blob');
         var file = e.target.files[0]; 
-        //frame.src = URL.createObjectURL(file); var file = frame.src; // use the Blob or File API
         var ref = firebase.database().ref("users");
         var user = firebase.auth().currentUser;    
         var uid = user.uid; 
@@ -201,8 +196,7 @@ function picture() {
         var oldestKey = "";
 
         userRef.once("value", function(snapshot) {
-          // The callback function will get called twice, once for "fred" and once for "barney"
-         snapshot.forEach(function(childSnapshot) {
+          snapshot.forEach(function(childSnapshot) {
             var key = childSnapshot.key;
             var childData = childSnapshot.val();
 
@@ -210,13 +204,10 @@ function picture() {
                 oldestTime = childData.time;
                 oldestKey = key;
             }
-
-            //console.log("key is:  " + key)
-            //var timestamp = userRef.child(key + "/time");         
             countChild = countChild + 1;     
-        });
+          });
 
-        if (countChild >= 9) {
+          if (countChild >= 9) {
             var deleteRef = firebase.storage().ref("/images"); 
             var desertRef = deleteRef.child(oldestKey);
             desertRef.delete().then(function() {
@@ -227,22 +218,20 @@ function picture() {
 
             var removePic = userRef.child("/" + oldestKey)
             removePic.remove();
-        }
-        
-        var pictureRef = userRef.push({
+          }
+          
+          var pictureRef = userRef.push({
             time: Date.now(),
             position: locate
-        });
+          });
 
-        var pictureKey = pictureRef.key;
+          var pictureKey = pictureRef.key;
 
-//      console.log("pictureKey: " + pictureKey)
-
-        var ref = storage.ref();
-        var imagesRef = ref.child("images/" + pictureKey);
-        imagesRef.put(file).then(function(snapshot) {
+          var ref = storage.ref();
+          var imagesRef = ref.child("images/" + pictureKey);
+          imagesRef.put(file).then(function(snapshot) {
             console.log('Uploaded a blob');
-        });
+          });
           
         });
 
@@ -250,60 +239,82 @@ function picture() {
 }
 
 
-
-
-
-/*
-
-function getUserProfile() {
-  console.log("userP")
-
-  var storage = firebase.storage().ref(); 
+function getUserPic() {                           // Get all user pictures.
+  var storageRef = firebase.storage().ref();
 
   var roots = firebase.database().ref("users");
   var user = firebase.auth().currentUser;    
   var uid = user.uid; 
-  var userRef = roots.child(uid+"/profile/");
+  var profileRef = roots.child(uid+"/pictures/");
 
-  var pic; var info; var link;
+  var pic; var iteration = 1;
 
-  userRef.once("value", function(snapshot) {
-    pic = snapshot.child("profilePic").val()
-    info = snapshot.child("profileInfo").val()
+  profileRef.once("value", function(snapshot) {
 
-    //console.log("snapshot: " + pic + " info: " + info)
+    snapshot.forEach(function(childSnapshot) {
+      pic = childSnapshot.key;
 
-    //var storageRef = storage.ref("profilePic");
-    //var tangRef = storageRef.child(pic + "png");
+      console.log("key is: " + pic)
+    
+      var spaceRef = storageRef.child('images/' + pic);
+      var path = spaceRef.fullPath;
 
+      var spaceRef = storageRef.child(path);
 
-    var spaceRef = storage.child('profilePic/' + pic);
-    var path = spaceRef.fullPath;
+      var toHTML = ".p" + iteration;
 
-    console.log("space: " + spaceRef + "  path: " + path)
+      storageRef.child(path).getDownloadURL().then(function(url) {
+          var test = url;
+          //console.log("url is: " + url);
 
-    var gsReference = storage.refFromURL('gs://test.appspot.com')
+          //console.log("toHTML is : " + toHTML)
+          document.querySelector(toHTML).src = test;        // picture to html
 
-    console.log("gsReference: " + gsReference)
+      }).catch(function(error) {
+        console.log("erroew")
+        console.log(error.code);
+        console.log(error.message);
+      });
 
-    storage.child('images/photo_1.png').getDownloadURL().then(function(url) {
-      var test = url;
-      console.log("test is: " + test)
-    }).catch(function(error) {
-      console.log("getDownloadURL error")
-      console.log(error.code);
-      console.log(error.message);
+      iteration = iteration + 1; 
+
+      
+
+      
     });
 
 
+    /*
+    pic = snapshot.child("profilePic").val()
+
+    var spaceRef = storageRef.child('profilePic/' + pic);
+    var path = spaceRef.fullPath;
+
+    //console.log("Path: " + path)
+    var spaceRef = storageRef.child(path);
+    storageRef.child(path+".png").getDownloadURL().then(function(url) {
+        var test = url;
+        console.log("url is: " + url);
+        //document.querySelector('.profile_picture').src = test;        // profile picture
+
+
+    }).catch(function(error) {
+      console.log("erroew")
+      console.log(error.code);
+      console.log(error.message);
+    });*/
+
+
   });
-
-
-  console.log("after once")
-
 }
 
-*/
+
+
+
+
+
+
+
 
 
 
