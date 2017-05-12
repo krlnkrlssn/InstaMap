@@ -55,8 +55,8 @@ function setNewData() {
   console.log("inside setNewData")
 
   var ref = firebase.database().ref("users");
-  var user = firebase.auth().currentUser;    
-  var uid = user.uid; 
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
   var userRef = ref.child(uid);
 
   userRef.set({
@@ -86,7 +86,7 @@ function login(username, password) {
      alert(error.message);
   });
   return;
-  
+
   //hideDialog('login-dialog');
   //showPage('main.html');
 }
@@ -108,16 +108,16 @@ function profileInfo() {
   var storageRef = firebase.storage().ref();
 
   var roots = firebase.database().ref("users");
-  var user = firebase.auth().currentUser;    
-  var uid = user.uid; 
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
   var profileRef = roots.child(uid+"/profile/");
 
   var userRef = roots.child(uid);
 
   userRef.on("value", function(snapshot) {
     var username = snapshot.child("username").val();
-    document.querySelector("#username").innerHTML = username;    // username 
-     
+    document.querySelector(".username").innerHTML = username;    // username
+
 
   }, function (error) {
      console.log("Error: " + error.code);
@@ -130,7 +130,7 @@ function profileInfo() {
     info = snapshot.child("profileInfo").val()
 
     console.log("info is: " + info)
-    document.querySelector("#description").innerHTML = info;    // profile description! 
+    document.querySelector(".description").innerHTML = info;    // profile description!
 
 
     var spaceRef = storageRef.child('profilePic/' + pic);
@@ -171,7 +171,7 @@ function getLocation() {
 
 
 function showPosition(position) {
-    locate = [position.coords.latitude,position.coords.longitude]; 
+    locate = [position.coords.latitude,position.coords.longitude];
 }
 
 
@@ -180,14 +180,14 @@ function picture() {        // stores pictures in database
   console.log(locate)
     var camera = document.getElementById('camera');
     var frame = document.getElementById('frame');
-    var storage = firebase.storage(); 
+    var storage = firebase.storage();
 
     camera.addEventListener('change', function(e) {
         console.log('selected a blob');
-        var file = e.target.files[0]; 
+        var file = e.target.files[0];
         var ref = firebase.database().ref("users");
-        var user = firebase.auth().currentUser;    
-        var uid = user.uid; 
+        var user = firebase.auth().currentUser;
+        var uid = user.uid;
         var userRef = ref.child(uid+"/pictures");
 
         var countChild = 0;
@@ -204,11 +204,11 @@ function picture() {        // stores pictures in database
                 oldestTime = childData.time;
                 oldestKey = key;
             }
-            countChild = countChild + 1;     
+            countChild = countChild + 1;
           });
 
           if (countChild >= 9) {
-            var deleteRef = firebase.storage().ref("/images"); 
+            var deleteRef = firebase.storage().ref("/images");
             var desertRef = deleteRef.child(oldestKey);
             desertRef.delete().then(function() {
                 console.log("File deleted successfully")
@@ -219,7 +219,7 @@ function picture() {        // stores pictures in database
             var removePic = userRef.child("/" + oldestKey)
             removePic.remove();
           }
-          
+
           var pictureRef = userRef.push({
             time: Date.now(),
             position: locate
@@ -232,7 +232,7 @@ function picture() {        // stores pictures in database
           imagesRef.put(file).then(function(snapshot) {
             console.log('Uploaded a blob');
           });
-          
+
         });
 
     });
@@ -243,8 +243,8 @@ function getUserPic() {                           // Get all user pictures.
   var storageRef = firebase.storage().ref();
 
   var roots = firebase.database().ref("users");
-  var user = firebase.auth().currentUser;    
-  var uid = user.uid; 
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
   var profileRef = roots.child(uid+"/pictures/");
 
   var pic; var iteration = 1;
@@ -255,7 +255,7 @@ function getUserPic() {                           // Get all user pictures.
       pic = childSnapshot.key;
 
       console.log("key is: " + pic)
-    
+
       var spaceRef = storageRef.child('images/' + pic);
       var path = spaceRef.fullPath;
 
@@ -276,11 +276,11 @@ function getUserPic() {                           // Get all user pictures.
         console.log(error.message);
       });
 
-      iteration = iteration + 1; 
+      iteration = iteration + 1;
 
-      
 
-      
+
+
     });
 
 
@@ -307,15 +307,3 @@ function getUserPic() {                           // Get all user pictures.
 
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
