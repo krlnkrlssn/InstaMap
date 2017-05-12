@@ -331,7 +331,8 @@
 
             var marker = new google.maps.Marker({
                 position: coordinates,
-                map: $scope.map
+                map: $scope.map,
+                icon: 'images/dot.png'
             });
 
             marker.id = $scope.markerId;
