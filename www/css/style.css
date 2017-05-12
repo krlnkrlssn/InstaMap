@@ -234,3 +234,14 @@ p.bottom {
   font-weight: bold;
   color: #cecece;
 }
+
+.side_menu_profile {
+  padding: 5px;
+  height: 65px;
+  width: 100%;
+}
+
+.change_profile {
+  font-size: 15px;
+  color: #FFFFFF;
+}
