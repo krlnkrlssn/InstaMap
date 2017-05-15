@@ -236,9 +236,14 @@ function picture() {        // stores pictures in database
           }
 
           var pictureRef = userRef.push({
-            time: Date.now(),
-            position: locate
+            time: Date.now()
           });
+          var positionRef = pictureRef.child("position");
+
+          positionRef.set({
+            latitude: locate[0],
+            longitude: locate[1]
+          })
 
           var pictureKey = pictureRef.key;
 
@@ -399,35 +404,41 @@ function getUsersLoc() {
     snapshot.forEach(function(userSnapshot) {
       var uss = userSnapshot.key;
 
-      //console.log("uss is: "+uss)
+      var profileRef = roots.child(uss+"/pictures/");
 
-  var profileRef = roots.child(uss+"/pictures/");
-  //console.log("profileRef is: "+profileRef)
+      if (profileRef != null) {
 
-    if (profileRef != null) {
+        profileRef.once("value", function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            var pic = childSnapshot.key;
+            var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
 
-      profileRef.once("value", function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          var pic = childSnapshot.key;
-          var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
+            picPos.once("value", function(snapshot) {
+              console.log("picpos val is: "  + snapshot.child("0").val);
+              console.log("picpos2 val is: "  + snapshot.child("1").val);
+              /*snapshot.forEach(function(posSnapshot) {
 
-          picPos.once("value", function(snapshot) {
-            snapshot.forEach(function(posSnapshot) {
+                var picPosAbs = posSnapshot.val();
 
-              var picPosAbs = posSnapshot.val();
+                console.log("uss: "+uss)
+                console.log("pics is: "+pic)
+                console.log("pos is: "+picPosAbs)
+                console.log("----------------")
 
-              console.log("uss: "+uss)
-              console.log("pics is: "+pic)
-              console.log("pos is: "+picPosAbs)
-              console.log("----------------")
 
+/* [[50.88, 4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007'], [50.90,4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007']]
+[lat, lng, token] */
+
+
+/*
+
+              });*/
             });
+
           });
-
         });
-      });
 
-    }
+      }
     });
 
     /*
