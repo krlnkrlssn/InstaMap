@@ -62,6 +62,18 @@ function setNewData() {
   userRef.set({
     username: ""
   });
+
+  console.log("username set")
+
+  var profileRef = ref.child(uid+"/profile");
+  
+  console.log("profileRef is: " + profileRef)
+
+  profileRef.set({
+    profileInfo: "This is your description",
+    profilePic: ""
+  });
+
   /*
   var pictureRef = userRef.push({
   time: Date.now(),
@@ -132,24 +144,25 @@ function profileInfo() {
     console.log("info is: " + info)
     document.querySelector(".description").innerHTML = info;    // profile description!
 
+    if (pic.length != 0) {
+      var spaceRef = storageRef.child('profilePic/' + pic);
+      var path = spaceRef.fullPath;
 
-    var spaceRef = storageRef.child('profilePic/' + pic);
-    var path = spaceRef.fullPath;
-
-    //console.log("Path: " + path)
-    var spaceRef = storageRef.child(path);
-    storageRef.child(path+".png").getDownloadURL().then(function(url) {
-        var test = url;
-        console.log(url);
-        document.querySelector('.profile_picture').src = test;        // profile picture
-
-
-    }).catch(function(error) {
-      console.log("erroew")
-      console.log(error.code);
-      console.log(error.message);
-    });
-
+      //console.log("Path: " + path)
+      var spaceRef = storageRef.child(path);
+      storageRef.child(path).getDownloadURL().then(function(url) {
+          var test = url;
+          console.log(url);
+          document.querySelector('.profile_picture').src = test;        // profile picture
+      }).catch(function(error) {
+        console.log("erroew")
+        console.log(error.code);
+        console.log(error.message);
+      });
+    }
+    else {
+      console.log("no profile picture")
+    }
 
   });
 }
@@ -239,6 +252,71 @@ function picture() {        // stores pictures in database
 
     });
 }
+
+
+
+function profilePicSettings() {        // updates profile in database
+  console.log("profilepic function")
+  var camera = document.getElementById('camera');
+  var frame = document.getElementById('frame');
+  var storage = firebase.storage();
+
+  camera.addEventListener('change', function(e) {
+    console.log('selected a blob');
+    var file = e.target.files[0];
+    var ref = firebase.database().ref("users");
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    var userProfileRef = ref.child(uid+"/profile");
+
+
+    userProfileRef.once("value", function(snapshot) {
+      var key = snapshot.child("profilePic").key;
+      var val = snapshot.child("profilePic").val();
+
+      //console.log("key and val is: " + key + " val: " + val);
+
+      userProfileRef.update({
+        "profilePic": uid
+      })
+
+      var ref = storage.ref();
+      var imagesRef = ref.child("profilePic/" + uid);
+      imagesRef.put(file).then(function(snapshot) {
+        console.log('Uploaded a blob');
+      });
+
+    });
+
+  });
+}
+
+function updateDescription(input) {        // updates description in database
+  console.log("description function. this is input: " + input.value)
+  var ref = firebase.database().ref("users");
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
+  var userProfileRef = ref.child(uid+"/profile");
+
+  userProfileRef.update({
+    "profileInfo": input.value
+  })
+
+  console.log("after update")
+};
+
+function updateUsername(username) {        // updates description in database
+  var ref = firebase.database().ref("users");
+  var user = firebase.auth().currentUser;
+  var uid = user.uid;
+  var userProfileRef = ref.child(uid);
+
+  userProfileRef.update({
+    "username": username.value
+  })
+
+  console.log("after update")
+};
 
 
 function getUserPic() {                           // Get all user pictures.

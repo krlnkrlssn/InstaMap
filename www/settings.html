@@ -40,16 +40,25 @@
 
         <ons-row class="profile_row">
 
-            <div class="profile_pic_col">       <!--  Profile picture here -->
-              <img class="profile_picture" src="https://vignette4.wikia.nocookie.net/dreamworks/images/d/d5/Mona_Lisa_%28copy%2C_Hermitage%29.jpg/revision/latest?cb=20170326215802"/>
+            <div style="text-align: center; margin: 30px;">
+                <input class="input-form" id="input" type="text" value="" placeholder="Description" /> <br>
+                <ons-button class="original-button" onclick="updateDescription(input)">update description</ons-button>
             </div>
-            <div class="profile_info_col"> 
-              <b style="font-size: 20px;" id="username"></b><br>
-              <p id="description"></p>
 
-              <ons-button class="original-button" onclick="getUserPic()">hello pictures</ons-button>
-
+            <div style="text-align: center; margin: 30px;">
+                <input class="input-form" id="Username" type="text" value="" placeholder="Username" /> <br>
+                <ons-button class="original-button" onclick="updateUsername(Username)">update description</ons-button>
             </div>
+
+            <p class="par-buttons">
+                <label for="camera" class="custom-file-upload">
+                    <i class="fa fa-camera fa-3x cam-icon" onclick="profilePicSettings()"></i>
+                </label>
+                <input type="file" accept="image/*" capture="camera" id="camera">
+                <!--<a class="cam-link" href="camera.html">
+                    <i class="fa fa-camera fa-3x cam-icon"></i>
+                </a>--> 
+            </p>
 
           </ons-row>
         <ons-button onclick="slidingMenu.setMainPage('map.html')">Back</ons-button>
@@ -58,3 +67,7 @@
 </ons-page>
 </body>
 </html>
+
+
+
+
