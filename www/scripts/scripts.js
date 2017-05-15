@@ -66,7 +66,7 @@ function setNewData() {
   console.log("username set")
 
   var profileRef = ref.child(uid+"/profile");
-  
+
   console.log("profileRef is: " + profileRef)
 
   profileRef.set({
@@ -333,7 +333,7 @@ function getUserPic() {                           // Get all user pictures.
 
     snapshot.forEach(function(childSnapshot) {
       pic = childSnapshot.key;
-      
+
       var spaceRef = storageRef.child('images/' + pic);
       var path = spaceRef.fullPath;
       var spaceRef = storageRef.child(path);
@@ -382,5 +382,56 @@ function getUserPic() {                           // Get all user pictures.
     });*/
 
 
+  });
+}
+
+function getUsersLoc() {
+  console.log("inne i getUserLoc")
+  var roots = firebase.database().ref("users");
+  //var user = firebase.auth().currentUser;
+  //var uid = user.uid;
+
+  roots.once("value", function(snapshot) {
+    snapshot.forEach(function(userSnapshot) {
+      var uss = userSnapshot.key;
+
+      //console.log("uss is: "+uss)
+
+  var profileRef = roots.child(uss+"/pictures/");
+  //console.log("profileRef is: "+profileRef)
+
+    if (profileRef != null) {
+
+      profileRef.once("value", function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var pic = childSnapshot.key;
+          var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
+
+          picPos.once("value", function(snapshot) {
+            snapshot.forEach(function(posSnapshot) {
+
+              var picPosAbs = posSnapshot.val();
+
+              console.log("uss: "+uss)
+              console.log("pics is: "+pic)
+              console.log("pos is: "+picPosAbs)
+              console.log("----------------")
+
+            });
+          });
+
+        });
+      });
+
+    }
+    });
+
+    /*
+    var picPos_x = roots.child(uss+"/pictures/"+pic+"/position/0");
+    var picPos_y = roots.child(uss+"/pictures/"+pic+"/position/1");
+
+        console.log("pos is: x: "+picPos_x+" y: "+picPos_y);
+        console.log("----------------")
+*/
   });
 }

@@ -4,10 +4,10 @@ input[type="file"] {
 }
 </style>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-<script src="scripts/scripts.js"></script>  
+<script src="scripts/scripts.js"></script>
 <script>
 getLocation();
-
+getUsersLoc();
 </script>
 <ons-navigator ng-controller="MapController">
    <ons-page>
@@ -27,7 +27,7 @@ getLocation();
             <input type="file" accept="image/*" capture="camera" id="camera">
             <!--<a class="cam-link" href="camera.html">
                 <i class="fa fa-camera fa-3x cam-icon"></i>
-            </a>--> 
+            </a>-->
         </p>
     </ons-page>
 </ons-navigator>
