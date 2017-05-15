@@ -361,7 +361,7 @@ function getUserPic() {                           // Get all user pictures.
     });
 
     function HelloWorld() {
-      console.log('HelloWorld')
+     return 'hej'
     }
 
 
