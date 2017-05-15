@@ -398,15 +398,15 @@ function getUserPic() {                           // Get all user pictures.
   });
 }
 
+var array = [];
 function getUsersLoc() {
   console.log("inne i getUserLoc")
   var roots = firebase.database().ref("users");
-  //var user = firebase.auth().currentUser;
-  //var uid = user.uid;
 
   roots.once("value", function(snapshot) {
     snapshot.forEach(function(userSnapshot) {
       var uss = userSnapshot.key;
+      var longitud; var latitude;
 
       var profileRef = roots.child(uss+"/pictures/");
 
@@ -418,39 +418,26 @@ function getUsersLoc() {
             var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
 
             picPos.once("value", function(snapshot) {
-              console.log("picpos val is: "  + snapshot.child("longitude").val());
-              console.log("picpos2 val is: "  + snapshot.child("latitude").val());
-              /*snapshot.forEach(function(posSnapshot) {
+            longitud = snapshot.child("longitude").val();
+            latitude =  snapshot.child("latitude").val();
+            
+            array.push([latitude, longitud, pic]);
+            //console.log(array);
 
-                var picPosAbs = posSnapshot.val();
-
-                console.log("uss: "+uss)
-                console.log("pics is: "+pic)
-                console.log("pos is: "+picPosAbs)
-                console.log("----------------")
-
-
-/* [[50.88, 4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007'], [50.90,4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007']]
-[lat, lng, token] */
-
-
-/*
-
-              });*/
             });
 
           });
         });
-
       }
     });
-
-    /*
-    var picPos_x = roots.child(uss+"/pictures/"+pic+"/position/0");
-    var picPos_y = roots.child(uss+"/pictures/"+pic+"/position/1");
-
-        console.log("pos is: x: "+picPos_x+" y: "+picPos_y);
-        console.log("----------------")
-*/
   });
 }
+
+function getArray(){
+  console.log(array);
+  return array;
+}
+
+
+
+
