@@ -238,7 +238,11 @@ function picture() {        // stores pictures in database
           var pictureRef = userRef.push({
             time: Date.now()
           });
+
           var positionRef = pictureRef.child("position");
+
+          console.log("positionRef: " + positionRef);
+          console.log("locate: "+ locate[0] +" and " + locate[1])
 
           positionRef.set({
             latitude: locate[0],
@@ -414,8 +418,8 @@ function getUsersLoc() {
             var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
 
             picPos.once("value", function(snapshot) {
-              console.log("picpos val is: "  + snapshot.child("0").val);
-              console.log("picpos2 val is: "  + snapshot.child("1").val);
+              console.log("picpos val is: "  + snapshot.child("longitude").val());
+              console.log("picpos2 val is: "  + snapshot.child("latitude").val());
               /*snapshot.forEach(function(posSnapshot) {
 
                 var picPosAbs = posSnapshot.val();
