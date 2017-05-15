@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <!DOCTYPE HTML>
   <html ng-app="myApp">
     <head>
@@ -26,48 +25,41 @@
       <script src="scripts/scripts.js"></script>
     </head>
 
-    
-<ons-page>
-    <ons-toolbar>
-        <div class="left">
-            <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon icon="bars"></ons-icon></ons-toolbar-button>
-        </div>
-        <div class="center">Settings Page</div>
-    </ons-toolbar>
-    
-    <div class="center">
-        <h1>Settings</h1>
 
+<ons-page>
+  <ons-toolbar id ="nav-bar" fixed-style ng-controller="SlidingMenuController">
+      <div class="left">
+          <ons-toolbar-button ng-click="slidingMenu.toggleMenu()"><ons-icon style="color: white;" icon="bars"></ons-icon></ons-toolbar-button>
+      </div>
+      <div class="center white-text">Profile</div>
+  </ons-toolbar>
+
+    <div class="center">
         <ons-row class="profile_row">
 
-            <div style="text-align: center; margin: 30px;">
-                <input class="input-form" id="input" type="text" value="" placeholder="Description" /> <br>
-                <ons-button class="original-button" onclick="updateDescription(input)">update description</ons-button>
-            </div>
+          <div style="text-align: center; width: 100%; margin: 20px;">
+              <input class="input-form" id="Username" type="text" value="" placeholder="Username" /> <br>
+              <ons-button class="original-button" onclick="updateUsername(Username)">Update Username</ons-button>
+          </div>
 
-            <div style="text-align: center; margin: 30px;">
-                <input class="input-form" id="Username" type="text" value="" placeholder="Username" /> <br>
-                <ons-button class="original-button" onclick="updateUsername(Username)">update description</ons-button>
-            </div>
+          <div style="text-align: center; width: 100%; margin: 20px;">
+              <input class="input-form" id="input" type="text" value="" placeholder="Description" /> <br>
+              <ons-button class="original-button" onclick="updateDescription(input)">Update Description</ons-button>
+          </div>
 
-            <p class="par-buttons">
+            <p class="new_pic">
                 <label for="camera" class="custom-file-upload">
                     <i class="fa fa-camera fa-3x cam-icon" onclick="profilePicSettings()"></i>
                 </label>
                 <input type="file" accept="image/*" capture="camera" id="camera">
                 <!--<a class="cam-link" href="camera.html">
                     <i class="fa fa-camera fa-3x cam-icon"></i>
-                </a>--> 
+                </a>-->
             </p>
 
           </ons-row>
-        <ons-button onclick="slidingMenu.setMainPage('map.html')">Back</ons-button>
     </div>
 
 </ons-page>
 </body>
 </html>
-
-
-
-
