@@ -402,6 +402,8 @@ var array = [];
 function getUsersLoc() {
   console.log("inne i getUserLoc")
   var roots = firebase.database().ref("users");
+  var storageRef = firebase.storage().ref();
+
 
   roots.once("value", function(snapshot) {
     snapshot.forEach(function(userSnapshot) {
@@ -417,11 +419,27 @@ function getUsersLoc() {
             var pic = childSnapshot.key;
             var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
 
+
+            var spaceRef = storageRef.child('images/' + pic);
+            var path = spaceRef.fullPath;
+            var spaceRef = storageRef.child(path);
+
             picPos.once("value", function(snapshot) {
             longitud = snapshot.child("longitude").val();
             latitude =  snapshot.child("latitude").val();
+
+            storageRef.child(path).getDownloadURL().then(function(url) {
+              var pictureLink = url;
+              array.push([latitude, longitud, pictureLink]);
+
+              //console.log("url is: " + url);
+
+            }).catch(function(error) {
+              console.log("erroew")
+              console.log(error.code);
+              console.log(error.message);
+            });
             
-            array.push([latitude, longitud, pic]);
             //console.log(array);
 
             });
@@ -434,10 +452,17 @@ function getUsersLoc() {
 }
 
 function getArray(){
-  console.log(array);
+  //console.log(array);
   return array;
 }
 
+
+
+/*
+
+https://firebasestorage.googleapis.com/v0/b/instamap-4b97c.appspot.com/o/images%-KkBIc4saZUP2ObY0Qor
+
+*/
 
 
 
