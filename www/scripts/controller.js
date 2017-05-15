@@ -27,7 +27,7 @@
         $scope.markers = [[50.88, 4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007'], [50.90,4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007']];
         $scope.markerId = 1; // Length av markers
 
-        
+        var hello = HelloWorld();
 
         //Map initialization
         $timeout(function(){
@@ -330,6 +330,9 @@
   
         }
 
+        function HelloWorld() {
+      console.log('HelloWorld')
+    }
 /*
         //Delete all Markers
         $scope.deleteAllMarkers = function(){

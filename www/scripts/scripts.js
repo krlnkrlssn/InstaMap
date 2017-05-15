@@ -360,6 +360,10 @@ function getUserPic() {                           // Get all user pictures.
 
     });
 
+    function HelloWorld() {
+      console.log('HelloWorld')
+    }
+
 
     /*
     pic = snapshot.child("profilePic").val()
