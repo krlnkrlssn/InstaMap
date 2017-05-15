@@ -369,9 +369,7 @@ function getUserPic() {                           // Get all user pictures.
 
     });
 
-    function HelloWorld() {
-     return 'hej'
-    }
+    
 
 
     /*
@@ -397,6 +395,11 @@ function getUserPic() {                           // Get all user pictures.
 
   });
 }
+
+function HelloWorld() {
+      console.log('inne i helloworld')
+     return 'hej'
+    }
 
 var array = [];
 function getUsersLoc() {
@@ -452,7 +455,7 @@ function getUsersLoc() {
 }
 
 function getArray(){
-  //console.log(array);
+  console.log('hej från getarray')
   return array;
 }
 

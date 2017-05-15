@@ -6,7 +6,6 @@
     var position; 
     var iw;
 
-
     app.controller('SlidingMenuController', function($scope){
 
         $scope.checkSlidingMenuStatus = function(){
@@ -26,9 +25,10 @@
     app.controller('MapController', function($scope, $timeout){
 
         $scope.map;
-        $scope.markers = [[50.88, 4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007'], [50.90,4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007']];
+        $scope.markers = getArray();
         $scope.markerId = 1; // Length av markers
-      
+        
+        console.log('markers: ' + $scope.markers)
 
         //Map initialization
         $timeout(function(){
