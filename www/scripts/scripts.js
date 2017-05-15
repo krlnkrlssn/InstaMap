@@ -53,7 +53,6 @@ function createAccount(email, password) {
 
 function setNewData() {
   console.log("inside setNewData")
-
   var ref = firebase.database().ref("users");
   var user = firebase.auth().currentUser;
   var uid = user.uid;
@@ -62,35 +61,21 @@ function setNewData() {
   userRef.set({
     username: ""
   });
-
   console.log("username set")
 
   var profileRef = ref.child(uid+"/profile");
-
   console.log("profileRef is: " + profileRef)
 
   profileRef.set({
     profileInfo: "This is your description",
     profilePic: ""
   });
-
-  /*
-  var pictureRef = userRef.push({
-  time: Date.now(),
-  position: 0
-  });
-
-  var pictureKey = pictureRef.key;
-  console.log("pictureKey: " + pictureKey)
-  */
-
 }
 
 function login(username, password) {
   firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(function(result) {
     console.log("logged in")
     //once logged in do something here
-    //console.log("logged in then func");
     window.open("main.html", "_self");
   }).catch(function(error) {
      console.log(error.code);
@@ -98,9 +83,6 @@ function login(username, password) {
      alert(error.message);
   });
   return;
-
-  //hideDialog('login-dialog');
-  //showPage('main.html');
 }
 
 
@@ -123,14 +105,11 @@ function profileInfo() {
   var user = firebase.auth().currentUser;
   var uid = user.uid;
   var profileRef = roots.child(uid+"/profile/");
-
   var userRef = roots.child(uid);
 
   userRef.on("value", function(snapshot) {
     var username = snapshot.child("username").val();
     document.querySelector(".username").innerHTML = username;    // username
-
-
   }, function (error) {
      console.log("Error: " + error.code);
   });
@@ -140,7 +119,6 @@ function profileInfo() {
   profileRef.once("value", function(snapshot) {
     pic = snapshot.child("profilePic").val()
     info = snapshot.child("profileInfo").val()
-
     console.log("info is: " + info)
     document.querySelector(".description").innerHTML = info;    // profile description!
 
@@ -166,8 +144,6 @@ function profileInfo() {
 
   });
 }
-
-
 
 
 var geolocate;
@@ -363,50 +339,15 @@ function getUserPic() {                           // Get all user pictures.
       });
 
       iteration = iteration + 1;
-
-
-
-
     });
-
-    
-
-
-    /*
-    pic = snapshot.child("profilePic").val()
-
-    var spaceRef = storageRef.child('profilePic/' + pic);
-    var path = spaceRef.fullPath;
-
-    //console.log("Path: " + path)
-    var spaceRef = storageRef.child(path);
-    storageRef.child(path+".png").getDownloadURL().then(function(url) {
-        var test = url;
-        console.log("url is: " + url);
-        //document.querySelector('.profile_picture').src = test;        // profile picture
-
-
-    }).catch(function(error) {
-      console.log("erroew")
-      console.log(error.code);
-      console.log(error.message);
-    });*/
-
-
   });
 }
-
-function HelloWorld() {
-      console.log('inne i helloworld')
-     return 'hej'
-    }
 
 var array = [];
 function getUsersLoc() {
   console.log("inne i getUserLoc")
   var roots = firebase.database().ref("users");
   var storageRef = firebase.storage().ref();
-
 
   roots.once("value", function(snapshot) {
     snapshot.forEach(function(userSnapshot) {
@@ -422,7 +363,6 @@ function getUsersLoc() {
             var pic = childSnapshot.key;
             var picPos = roots.child(uss+"/pictures/"+pic+"/position/");
 
-
             var spaceRef = storageRef.child('images/' + pic);
             var path = spaceRef.fullPath;
             var spaceRef = storageRef.child(path);
@@ -435,18 +375,12 @@ function getUsersLoc() {
               var pictureLink = url;
               array.push([latitude, longitud, pictureLink]);
 
-              //console.log("url is: " + url);
-
-            }).catch(function(error) {
-              console.log("erroew")
-              console.log(error.code);
-              console.log(error.message);
+              }).catch(function(error) {
+                console.log("erroew")
+                console.log(error.code);
+                console.log(error.message);
+              });
             });
-            
-            //console.log(array);
-
-            });
-
           });
         });
       }
