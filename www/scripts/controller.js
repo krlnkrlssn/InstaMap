@@ -3,6 +3,7 @@
 (function() {
     var app = angular.module('myApp', ['onsen']);
     var position; 
+    var iw;
 
     app.controller('SlidingMenuController', function($scope){
 
@@ -23,8 +24,10 @@
     app.controller('MapController', function($scope, $timeout){
 
         $scope.map;
-        $scope.markers = [];
-        $scope.markerId = 1;
+        $scope.markers = [[50.88, 4.709, "hej"], [50.90,4.709, "da"]];
+        $scope.markerId = 1; // Length av markers
+
+        
 
         //Map initialization
         $timeout(function(){
@@ -273,6 +276,7 @@
             $scope.hammertime = Hammer($scope.element).on("hold", function(event) {
                 $scope.addOnClick(event);
             });
+            $scope.initMarkers($scope.markers);
             if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
@@ -292,6 +296,40 @@
 
         },100);
 
+        $scope.initMarkers = function(markers) {
+          for (var i = 0; i < $scope.markers.length; i++) {
+            var x = $scope.markers[i][0];
+            var y = $scope.markers[i][1];
+            var coordinates = {'lat':x, 'lng':y};
+            var marker = new google.maps.Marker({
+                position: coordinates,
+                map: $scope.map,
+                icon: 'images/icon-map.png',
+                title: 'hej'
+            });           
+            marker.id = $scope.markerId;
+            $scope.markerId++;
+            google.maps.event.addListener(marker, "click", function (e) {
+              showEmbed(this.title, this)
+            });
+          }
+          
+        }
+        function showEmbed(url, marker) {
+
+          if(iw) iw.close();
+          var options = {
+            position: $scope.map.getCenter(),
+            disableAutoPan: true,
+            content: url
+          };
+          iw =  new google.maps.InfoWindow(options);
+          iw.open($scope.map, marker);
+          
+  
+        }
+
+/*
         //Delete all Markers
         $scope.deleteAllMarkers = function(){
 
@@ -321,14 +359,13 @@
             return x * Math.PI / 180;
         };
 
-
         //Add single Marker
         $scope.addOnClick = function(event) {
             var x = event.gesture.center.pageX;
             var y = event.gesture.center.pageY-44;
             var point = new google.maps.Point(x, y);
             var coordinates = $scope.overlay.getProjection().fromContainerPixelToLatLng(point);
-
+            console.log(coordinates)
             var marker = new google.maps.Marker({
                 position: coordinates,
                 map: $scope.map,
@@ -375,5 +412,6 @@
 
 
         };
+        */
     });
 })();
