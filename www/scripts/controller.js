@@ -24,7 +24,7 @@
     app.controller('MapController', function($scope, $timeout){
 
         $scope.map;
-        $scope.markers = [[50.88, 4.709, "hej"], [50.90,4.709, "da"]];
+        $scope.markers = [[50.88, 4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007'], [50.90,4.709, '0b5083e1-c7d4-449a-b83d-1087d28e0007']];
         $scope.markerId = 1; // Length av markers
 
         
@@ -300,12 +300,13 @@
           for (var i = 0; i < $scope.markers.length; i++) {
             var x = $scope.markers[i][0];
             var y = $scope.markers[i][1];
+            var img = $scope.markers[i][2];
             var coordinates = {'lat':x, 'lng':y};
             var marker = new google.maps.Marker({
                 position: coordinates,
                 map: $scope.map,
                 icon: 'images/icon-map.png',
-                title: 'hej'
+                title: img
             });           
             marker.id = $scope.markerId;
             $scope.markerId++;
@@ -315,13 +316,13 @@
           }
           
         }
-        function showEmbed(url, marker) {
-
+        function showEmbed(input, marker) {
+          var url = 'https://firebasestorage.googleapis.com/v0/b/instamap-4b97c.appspot.com/o/images%2F-KjwETj4Le8Jtuo7YI_V?alt=media&token=' + input;
           if(iw) iw.close();
           var options = {
             position: $scope.map.getCenter(),
             disableAutoPan: true,
-            content: url
+            content: '<img src="'+url+'">'
           };
           iw =  new google.maps.InfoWindow(options);
           iw.open($scope.map, marker);
