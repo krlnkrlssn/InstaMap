@@ -35,10 +35,11 @@
   </ons-toolbar>
 
   <div style="text-align: center; margin: 30px;">
+    <input class="input-form" id="username" type="text" value="" placeholder="username" /> <br>
     <input class="input-form" id="email" type="text" value="" placeholder="E-mail" /> <br>
     <input class="input-form" id="password" type="password" value="" placeholder="Password" /> <br>
     <p style="margin-top: 30px;">
-      <ons-button class="original-button" onclick="createAccount(email,password)">Create account</ons-button>
+      <ons-button class="original-button" onclick="createAccount(username,email,password)">Create account</ons-button>
     </p>
   </div>
 

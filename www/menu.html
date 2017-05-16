@@ -1,3 +1,8 @@
+<html>
+  <head>
+    <title>InstaMap</title>
+
+
 <script src="scripts/scripts.js"></script>
 <script>        // Initialize Firebase
     var config = {
@@ -11,6 +16,9 @@
     firebase.initializeApp(config);
 
 </script>
+</head>
+<body>
+
 <ons-page style="background-color: white">
     <ons-list>
         <!--<ons-list-item class="side_menu_profile">
@@ -20,8 +28,8 @@
         <ons-list-item
             modifier="tappable" class="list__item__line-height"
             onclick="slidingMenu.setMainPage('map.html', {closeMenu: true})">
-            <i class="fa fa-home fa-lg" style="color: #666"></i>
-            &nbsp; InstaMap
+            <i class="fa fa-globe fa-lg" style="color: #c54444"></i>
+            &nbsp; <b style="color: #c54444">InstaMap</b>
         </ons-list-item>
         <ons-list-item
             modifier="tappable" class="list__item__line-height"
@@ -43,3 +51,5 @@
         </ons-list-item>
     </ons-list>
 </ons-page>
+</body>
+</html>

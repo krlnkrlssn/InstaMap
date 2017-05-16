@@ -33,7 +33,7 @@ a:visited {
 }
 /* mouse over link */
 a:hover {
-    color: #333333;
+    color: #c54444;
 }
 /* selected link */
 a:active {
@@ -238,4 +238,40 @@ p.bottom {
 .side_menu_profile {
   padding: 5px;
   height: 65px;
+}
+/*
+<i class="fa fa-map-marker" aria-hidden="true"></i>
+
+.map_marker {
+  width: 15px;
+  height: 15px;
+  border-radius: 50% 50% 50% 0;
+  background: #c54444;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  } */
+
+  .map_marker {
+    position: relative;
+}
+
+/*replace the content value with the
+corresponding value from the list below*/
+
+.map_marker:before {
+    content: "\f041";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: #c54444;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 10px;
+    left: 0;
 }
