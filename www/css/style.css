@@ -241,20 +241,20 @@ p.bottom {
 }
 
 .map_marker {
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   border-radius: 50% 50% 50% 0;
   background: #c54444;
   position: absolute;
   transform: rotate(-45deg);
   left: 50%;
   top: 50%;
-  margin: -20px 0 0 -20px;
+  margin: -10px 0 0 -10px;
   &:after
     content: '';
-    width: 14px;
-    height: 14px;
-    margin: 8px 0 0 8px;
+    width: 7px;
+    height: 7px;
+    margin: 4px 0 0 4px;
     background: #333333;
     position: absolute;
     border-radius: 50%;
