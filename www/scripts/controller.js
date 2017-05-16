@@ -318,7 +318,7 @@
           
         }
         function showEmbed(input, marker) {
-          var url = 'https://firebasestorage.googleapis.com/v0/b/instamap-4b97c.appspot.com/o/images%2F-KjwETj4Le8Jtuo7YI_V?alt=media&token=' + input;
+          var url = input;
           if(iw) iw.close();
           var options = {
             position: $scope.map.getCenter(),
