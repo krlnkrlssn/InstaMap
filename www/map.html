@@ -2,6 +2,13 @@
 input[type="file"] {
     display: none;
 }
+.page__background {
+  background-color: #2a2826;
+}
+
+.page__content {
+  background-color: #2a2826;
+}
 </style>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
 <script src="scripts/scripts.js"></script>
@@ -20,7 +27,7 @@ getUsersLoc();
             <div class="center white-text">Map</div>
         </ons-toolbar>
 
-        <div id="map_canvas"></div>
+        <div id="map_canvas"><img src="images/loading-gif.gif" style="width: 100%"></div>
 
         <p class="par-buttons">
             <label for="camera" class="custom-file-upload">

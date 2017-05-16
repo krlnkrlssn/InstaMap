@@ -23,6 +23,11 @@
       <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkdDXXrqM-MYz7QiZhOI7hL0OV-WpNICw&callback=initMap"></script>-->
       <!--<script src="scripts/controller.js"></script>-->
       <script src="scripts/scripts.js"></script>
+      <style type="text/css">
+          input[type="file"] {
+            display: none;
+        }
+      </style>
     </head>
 
 
@@ -47,15 +52,15 @@
               <ons-button class="original-button" onclick="updateDescription(input)">Update Description</ons-button>
           </div>
 
-            <p>
+            <div style="text-align: center; width: 100%; margin: 20px;">
                 <label for="camera" class="custom-file-upload">
-                    <i class="fa fa-camera fa-3x cam-icon" onclick="profilePicSettings()"></i>
+                    <p class="white-text">Change profile picture</p><i class="fa fa-camera fa-3x cam-icon" onclick="profilePicSettings()"></i>
                 </label>
                 <input type="file" accept="image/*" capture="camera" id="camera">
                 <!--<a class="cam-link" href="camera.html">
                     <i class="fa fa-camera fa-3x cam-icon"></i>
                 </a>-->
-            </p>
+            </div>
 
           </ons-row>
     </div>
