@@ -332,7 +332,9 @@
           var options = {
             position: $scope.map.getCenter(),
             disableAutoPan: true,
-            content: '<img src="'+url+'">'
+            maxWidth: 200,
+            maxHeight: 200,
+            content: '<img style="width: 100%;" src="'+url+'">'
           };
           iw =  new google.maps.InfoWindow(options);
           iw.open($scope.map, marker);
