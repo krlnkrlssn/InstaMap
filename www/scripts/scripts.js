@@ -108,10 +108,12 @@ function profileInfo() {
   var uid = user.uid;
   var profileRef = roots.child(uid+"/profile/");
   var userRef = roots.child(uid);
+  var user_name;
 
   userRef.on("value", function(snapshot) {
-    var username = snapshot.child("username").val();
-    document.querySelector(".username").innerHTML = username;    // username
+    user_name = snapshot.child("username").val();
+
+    //document.querySelector(".username").innerHTML = username;    // username
   }, function (error) {
      console.log("Error: " + error.code);
   });
@@ -121,8 +123,10 @@ function profileInfo() {
   profileRef.once("value", function(snapshot) {
     pic = snapshot.child("profilePic").val()
     info = snapshot.child("profileInfo").val()
-    console.log("info is: " + info)
-    document.querySelector(".description").innerHTML = info;    // profile description!
+    //console.log("info is: " + info)
+
+    
+    //document.querySelector(".description").innerHTML = info;    // profile description!
 
     if (pic.length != 0) {
       var spaceRef = storageRef.child('profilePic/' + pic);
@@ -132,8 +136,14 @@ function profileInfo() {
       var spaceRef = storageRef.child(path);
       storageRef.child(path).getDownloadURL().then(function(url) {
           var test = url;
-          console.log(url);
-          document.querySelector('.profile_picture').src = test;        // profile picture
+          //console.log(url);
+          //console.log("profile_picture is: " + test)
+
+          document.getElementById('username').innerHTML = user_name;
+          document.getElementById('description').innerHTML = info;
+          document.getElementById('profile_picture').src = test;
+
+          //document.querySelector('.profile_picture').src = test;        // profile picture
       }).catch(function(error) {
         console.log("erroew")
         console.log(error.code);
@@ -397,10 +407,10 @@ function getUsersLoc() {
             storageRef.child(path).getDownloadURL().then(function(url) {
               longitud = snapshot.child("longitude").val();
               latitude =  snapshot.child("latitude").val();
-              
+
               var pictureLink = url;
               array.push([latitude, longitud, pictureLink]);
-              console.log("\n\npushed latitude is: " + latitude + " \nlongitud is: " + longitud + "\n\n")
+              //console.log("\n\npushed latitude is: " + latitude + " \nlongitud is: " + longitud + "\n\n")
 
               }).catch(function(error) {
                 console.log("erroew")
