@@ -390,17 +390,25 @@ function getUsersLoc() {
             var spaceRef = storageRef.child(path);
 
             picPos.once("value", function(snapshot) {
-            longitud = snapshot.child("longitude").val();
-            latitude =  snapshot.child("latitude").val();
+            
+            //console.log("latitude is: " + latitude + " \nlongitud is: " + longitud)
+
 
             storageRef.child(path).getDownloadURL().then(function(url) {
+              longitud = snapshot.child("longitude").val();
+              latitude =  snapshot.child("latitude").val();
+              
               var pictureLink = url;
               array.push([latitude, longitud, pictureLink]);
+              console.log("\n\npushed latitude is: " + latitude + " \nlongitud is: " + longitud + "\n\n")
+
               }).catch(function(error) {
                 console.log("erroew")
                 console.log(error.code);
                 console.log(error.message);
               });
+              //console.log("\nafter latitude is: " + latitude + " \nlongitud is: " + longitud + "\n\n\n")
+
             });
           });
         });
