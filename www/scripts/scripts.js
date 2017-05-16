@@ -37,11 +37,12 @@ function loadPage(page) {
   content.load(page).then(menu.close.bind(menu));
 }
 
-function createAccount(email, password) {
+function createAccount(username, email, password) {
   var returnMessage = "";
   firebase.auth().createUserWithEmailAndPassword(email.value, password.value).then(function(result) {
+    setNewData(username.value);
     console.log("created new user!")  //once logged in do something here
-    setNewData();
+
   }).catch(function(error) {
     console.log(error.code);
     console.log(error.message);
@@ -51,7 +52,7 @@ function createAccount(email, password) {
 //showPage('main.html');
 }
 
-function setNewData() {
+function setNewData(username_in) {
   console.log("inside setNewData")
   var ref = firebase.database().ref("users");
   var user = firebase.auth().currentUser;
@@ -59,9 +60,9 @@ function setNewData() {
   var userRef = ref.child(uid);
 
   userRef.set({
-    username: ""
+    username: username_in
   });
-  console.log("username set")
+  console.log("username set is: " + username_in)
 
   var profileRef = ref.child(uid+"/profile");
   console.log("profileRef is: " + profileRef)
@@ -375,6 +376,7 @@ function getUsersLoc() {
               var pictureLink = url;
               array.push([latitude, longitud, pictureLink]);
 
+
               }).catch(function(error) {
                 console.log("erroew")
                 console.log(error.code);
@@ -389,6 +391,7 @@ function getUsersLoc() {
 }
 
 function getArray(){
+  console.log("array: " + array)
   console.log('hej från getarray')
   return array;
 }
