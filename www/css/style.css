@@ -33,7 +33,7 @@ a:visited {
 }
 /* mouse over link */
 a:hover {
-    color: #333333;
+    color: #c54444;
 }
 /* selected link */
 a:active {
@@ -239,3 +239,23 @@ p.bottom {
   padding: 5px;
   height: 65px;
 }
+
+.map_marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  background: #c54444;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  &:after
+    content: '';
+    width: 14px;
+    height: 14px;
+    margin: 8px 0 0 8px;
+    background: #333333;
+    position: absolute;
+    border-radius: 50%;
+  }
