@@ -370,6 +370,7 @@ function getUsersLoc() {
   var storageRef = firebase.storage().ref();
 
   roots.once("value", function(snapshot) {
+    console.log('forsta loop')
     snapshot.forEach(function(userSnapshot) {
       var uss = userSnapshot.key;
       var longitud; var latitude;
@@ -394,8 +395,6 @@ function getUsersLoc() {
             storageRef.child(path).getDownloadURL().then(function(url) {
               var pictureLink = url;
               array.push([latitude, longitud, pictureLink]);
-
-
               }).catch(function(error) {
                 console.log("erroew")
                 console.log(error.code);
@@ -410,8 +409,15 @@ function getUsersLoc() {
 }
 
 function getArray(){
-  //console.log("array: " + array)
-  //console.log('hej från getarray')
+
+    if (array.length > 0) {
+        //console.log('inside');
+    }
+    else {
+        setTimeout(getArray,1000);
+    }
+  //console.log('hej från getarray' + array);
+
   return array;
 }
 

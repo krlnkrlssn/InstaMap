@@ -25,10 +25,10 @@
     app.controller('MapController', function($scope, $timeout){
 
         $scope.map;
-        $scope.markers = getArray();
+        
         $scope.markerId = 1; // Length av markers
         
-        console.log('markers: ' + $scope.markers)
+
 
         //Map initialization
         $timeout(function(){
@@ -277,7 +277,7 @@
             $scope.hammertime = Hammer($scope.element).on("hold", function(event) {
                 $scope.addOnClick(event);
             });
-            $scope.initMarkers($scope.markers);
+            
             if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
@@ -295,8 +295,17 @@
               console.log("failed");
             }
 
-        },100);
-
+        
+        /*
+        var array = getArray();
+        $scope.markers = getArray();
+        document.addEventListener($scope.markers, "change", function() {
+          console.log('array changed')
+      }); */
+        $scope.markers = getArray();
+        $scope.initMarkers($scope.markers);
+        console.log($scope.markers)
+        },10000);
         $scope.initMarkers = function(markers) {
           for (var i = 0; i < $scope.markers.length; i++) {
             var x = $scope.markers[i][0];
@@ -330,6 +339,8 @@
           
   
         }
+
+
 
 /*
         //Delete all Markers

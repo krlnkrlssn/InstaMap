@@ -239,6 +239,8 @@ p.bottom {
   padding: 5px;
   height: 65px;
 }
+/*
+<i class="fa fa-map-marker" aria-hidden="true"></i>
 
 .map_marker {
   width: 15px;
@@ -250,12 +252,26 @@ p.bottom {
   left: 50%;
   top: 50%;
   margin: -10px 0 0 -10px;
-  &:after
-    content: '';
-    width: 7px;
-    height: 7px;
-    margin: 4px 0 0 4px;
-    background: #333333;
+  } */
+
+  .map_marker {
+    position: relative;
+}
+
+/*replace the content value with the
+corresponding value from the list below*/
+
+.map_marker:before {
+    content: "\f041";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: #c54444;
+    font-size: 18px;
+    padding-right: 0.5em;
     position: absolute;
-    border-radius: 50%;
-  }
+    top: 10px;
+    left: 0;
+}
