@@ -165,14 +165,18 @@ function showPosition(position) {
 }
 
 
-function picture() {        // stores pictures in database
+var picture = function() {        // stores pictures in database
   console.log("picture funcion")
-  console.log(locate)
+  //console.log(locate)
+    var countPush = 0; 
+
     var camera = document.getElementById('camera');
     var frame = document.getElementById('frame');
-    var storage = firebase.storage();
 
     camera.addEventListener('change', function(e) {
+        var storage = firebase.storage();
+        
+
         console.log('selected a blob');
         var file = e.target.files[0];
         var ref = firebase.database().ref("users");
@@ -180,59 +184,74 @@ function picture() {        // stores pictures in database
         var uid = user.uid;
         var userRef = ref.child(uid+"/pictures");
 
-        var countChild = 0;
-
-        var oldestTime = 99999999999999;
-        var oldestKey = "";
 
         userRef.once("value", function(snapshot) {
-          snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-            var childData = childSnapshot.val();
+          if (countPush == 0) {
 
-            if (oldestTime > childData.time) {
-              oldestTime = childData.time;
-              oldestKey = key;
-            }
-            countChild = countChild + 1;
-          });
+            var countChild = 0;
+            var oldestTime = 99999999999999;
+            var oldestKey = "";
 
-          console.log("countChild is: " + countChild);
+            console.log("once")
+            snapshot.forEach(function(childSnapshot) {
+              //console.log("forEach")
+              var key = childSnapshot.key;
+              var childData = childSnapshot.val();
 
-          if (countChild >= 9) {
-            var deleteRef = firebase.storage().ref("/images");
-            var desertRef = deleteRef.child(oldestKey);
-            desertRef.delete().then(function() {
-                console.log("File deleted successfully")
-            }).catch(function(error) {
-              // Uh-oh, an error occurred!
+              //console.log("key: " + key + " child: " + childData)
+
+              if (oldestTime > childData.time) {
+                oldestTime = childData.time;
+                oldestKey = key;
+              }
+              countChild = countChild + 1;
+
             });
 
-            var removePic = userRef.child("/" + oldestKey)
-            removePic.remove();
+            if (countChild >= 9) {
+              console.log("if > 9  childcount is " + countChild)
+              var deleteRef = firebase.storage().ref("/images");
+              var desertRef = deleteRef.child(oldestKey);
+              desertRef.delete().then(function() {
+                  console.log("File deleted successfully: " + oldestKey)
+              }).catch(function(error) {
+                // Uh-oh, an error occurred!
+              });
+              var removePic = userRef.child("/" + oldestKey)
+              removePic.remove();
+            }
+            
+            //console.log("before pushed")
+            var pictureRef = userRef.push({
+              time: Date.now()
+            });
+            console.log("pushed")
+
+            var positionRef = pictureRef.child("position");
+
+            //console.log("positionRef: " + positionRef);
+            //console.log("locate: "+ locate[0] +" and " + locate[1])
+
+            //console.log("before set")
+            positionRef.set({
+              latitude: locate[0],
+              longitude: locate[1]
+            })
+            //console.log("set")
+
+            var pictureKey = pictureRef.key;
+
+            var ref = storage.ref();
+            var imagesRef = ref.child("images/" + pictureKey);
+            imagesRef.put(file).then(function(snapshot) {
+              console.log('Uploaded a blob');
+
+            });
+          
+        
+            countPush = countPush + 1;
+            console.log("countPush after is: " + countPush)
           }
-
-          var pictureRef = userRef.push({
-            time: Date.now()
-          });
-
-          var positionRef = pictureRef.child("position");
-
-          console.log("positionRef: " + positionRef);
-          console.log("locate: "+ locate[0] +" and " + locate[1])
-
-          positionRef.set({
-            latitude: locate[0],
-            longitude: locate[1]
-          })
-
-          var pictureKey = pictureRef.key;
-
-          var ref = storage.ref();
-          var imagesRef = ref.child("images/" + pictureKey);
-          imagesRef.put(file).then(function(snapshot) {
-            console.log('Uploaded a blob');
-          });
 
         });
 
@@ -391,8 +410,8 @@ function getUsersLoc() {
 }
 
 function getArray(){
-  console.log("array: " + array)
-  console.log('hej från getarray')
+  //console.log("array: " + array)
+  //console.log('hej från getarray')
   return array;
 }
 
